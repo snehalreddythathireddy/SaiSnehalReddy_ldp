@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>Animals living in zoo</p>
+        <p>Hunting</p>
+        <p id="demo"></p>
+        <p id="demo1"></p>
+        <div id="main">
+            <h4>this is id main</h4>
+            <h4>contains info on main</h4>
+            <h4>heading of main</h4>
+        </div>
+        <div id="div1">
+          <p id="p1">This is replace paragraph.</p>
+          <p id="p2">This is another replace paragraph.</p>
+        </div>
+        <button type="button" onclick="document.getElementById('main').style.background='lightgreen'">click me</button>
+        <h2 class="z">this is example on</h2>
+        <h2 class="z">class tag</h2>
+        <h2 class="a"></h2>
+        <h2 class ="a"></h2>
+        <div id="forNew">
+            <h2 id="forNew1">scentence1</h2>
+            <p id="forNew2">scentence2</p>
+        </div>
+        <img id="myImage" src="linkedin.png" alt="email" width="200"/>
+        <script>
+            /*selecting or modify*/
+            const mypara=document.getElementById("demo");
+            mypara.innerHTML="hello world";
+            const scentences=document.getElementsByTagName("p");
+            document.getElementById("demo").innerHTML+="<br>the text is about:"+scentences[1].innerHTML;
+            const x=document.getElementById("main");
+            const y=x.getElementsByTagName("h4")
+            mypara.innerHTML+="<br>another tag example " +y[2].innerHTML
+            const x1=document.getElementsByClassName("z");
+            mypara.innerHTML+="<br>class tag example " +x1[1].innerHTML
+            const mypara1=document.querySelector(".a");
+            mypara1.innerHTML+="used query selector";
+            const mypara2=document.querySelectorAll(".a");
+            mypara2[0].innerHTML+="<br>used query selectorall";
+            mypara2[1].innerHTML+="used queryselecorall";
+            /*changing html*/
+            document.getElementById("myImage").src="emailicon.png";
+            document.getElementById("demo").innerHTML="Date:"+Date();
+            document.getElementById("main").style.color="pink";
+            /*Form Validation*/
+            function validateForm(){
+                let xs = document.forms ["myForm"]["name"].value;
+                if(xs=== ""){
+                    alert("the {value} should be filled");
+                    return false;
+                }
+
+            }
+            /*child nodes and node values*/
+            document.getElementById("demo1").innerHTML=document.getElementById("main").firstElementChild.innerHTML;
+            /*document.body and document.documentElement*/
+            /*document.getElementById("demo1").innerHTML+="<br> whole document: "+document.documentElement.innerHTML;
+            document.getElementById("demo").innerHTML+="<br> body: "+document.body.innerHTML;*/
+            /*nodes*/
+            document.getElementById("demo").innerHTML+="<br> node name: "+document.getElementById("demo1").nodeName;
+            document.getElementById("demo").innerHTML+="<br> node type: "+document.getElementById("demo1").nodeType;
+            /*creating new element*/
+            const newEle =document.createElement("p");
+            const newNod =document.createTextNode("This is new element");
+            newEle.appendChild(newNod);
+            document.getElementById("demo").appendChild(newEle);
+
+            const newEle2=document.createElement("h3");
+            newEle2.innerHTML="this is ex2 on new element using before";
+            const para2=document.getElementById("forNew");
+            const before=document.getElementById("forNew2");
+            para2.insertBefore(newEle2,before);
+            /*replace*/
+            const parare = document.createElement("p");
+            const nodere = document.createTextNode("This is new.");
+            parare.appendChild(nodere);
+
+            const parentre = document.getElementById("div1");
+            const childre = document.getElementById("p1");
+            parentre.replaceChild(parare, childre);
+        </script>
+        <form name="myForm" onsubmit="return validateForm()" method="post">
+            Name:<input type="text" name="name">
+            <input type="submit" value="submit">
+        </form>
+        <button onclick="this.innerHTML=Date()">The time is?</button>
+
+    </body>
+</html>
