@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Objects</h1>
+<h2>Creating an Object</h2>
+
+<p id="demo"></p>
+<p id="demo2"> </p>
+<script>
+// Create an Object:
+const car = new Object({
+  type:"Fiat",
+  model:"500",
+  color:"white",
+  typeColor:function(){
+    return this.type+" "+this.color;
+  }
+});
+const bike={
+    type:"sports",
+    model:"X15",
+    color:"black",
+    price:"500000",
+    mySpeed:{
+        speed1:"100",
+        speed2:"150",
+        speed3:"200"
+
+    }
+}
+let text=bike.mySpeed.speed3;
+bike.prices=function(){
+    return this.price;
+}
+document.getElementById("demo2").innerHTML="The bike is" +bike["type"]+"of model "+bike["model"]+"color "+bike["color"]+" of price "+bike.prices()+" with speed of "+bike.mySpeed.speed2+ text;
+// Display Data from the Object:
+document.getElementById("demo").innerHTML = "The car type is " + car.type + " "+car.model + " another " +car.typeColor();
+</script>
+
+</body>
+</html>
