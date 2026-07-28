@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant app</title>
+
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="table-sec">
+            <h3>Tables</h3>
+            <form class="search-form">
+                <input type ="search" placeholder= "Search here" id="tableSearch" >
+            </form>
+            <div class="table-item" data-name="Table 1">
+                <h2>Table 1</h2>
+                <p class="details">
+                Rs.<span class="total">0</span> |
+                Total Items: <span class="count">0</span>
+                </p>
+            </div>
+            <div class="table-item" data-name="Table 2">
+                <h2>Table 2</h2>
+                <p class="details">
+                Rs.<span class="total">0</span> |
+                Total Items: <span class="count">0</span>
+                </p>
+             </div>
+            <div class="table-item" data-name="Table 3">
+                <h2>Table 3</h2>
+                <p class="details">
+                Rs.<span class="total">0</span> |
+                Total Items: <span class="count">0</span>
+                </p>
+            </div>
+        </div>
+       
+        <div class="menu"> 
+            <h4>Menu<br></h4>
+            <form class="search-form">
+                <input type="search" placeholder="Search menu.... by course by food" id="menuSearch">
+            </form>
+            <div class="starters" >
+                <h3>Starters</h3>
+                <div class="items" data-price="150" data-name="Veg Spring Rolls" data-course="Starters" draggable="true">
+                    <h3>Veg Spring Rolls</h3>
+                    <p>Rs.150</p>
+                </div>
+                <div class="items" data-price="220" data-name="Paneer Tikka" data-course="Starters" draggable="true">
+                    <h3>Paneer Tikka</h3>
+                    <p>Rs.220</p>
+                </div>
+                <div class="items" data-price="260" data-name="Chicken 65" data-course="Starters" draggable="true">
+                    <h3>Chicken 65</h3>
+                    <p>Rs.260</p>
+                </div>
+                <div class="items" data-price="180" data-name="Crispy Corn" data-course="Starters" draggable="true">
+                    <h3>Crispy Corn</h3>
+                    <p>Rs.180</p>
+                </div>
+            </div>
+            <div class="main-course">
+                <h3>Main Course</h3>
+                <div class="items" data-price="320" data-name="Chicken Biryani" data-course="Main Course" draggable="true">
+                    <h3>Chicken Biryani</h3>
+                    <p>Rs.320</p>
+                </div>
+                <div class="items" data-price="280" data-name="Paneer Butter Masala" data-course="Main Course" draggable="true">
+                    <h3>Paneer Butter Masala</h3>
+                    <p>Rs.280</p>
+                </div>
+                <div class="items" data-price="220" data-name="Veg Fried Rice" data-course="Main Course" draggable="true">
+                    <h3>Veg Fried Rice</h3>
+                    <p>Rs.220</p>
+                </div>
+                <div class="items" data-price="240" data-name="Butter Naan with Dal Makhani" data-course="Main Course" draggable="true">
+                    <h3>Butter Naan with Dal Makhani</h3>
+                    <p>Rs.240</p>
+                </div>
+            </div>
+            <div class="dessert" >
+                <h3>Dessert</h3>
+                <div class="items" data-price="90" data-name="Gulab Jamun" data-course="Dessert" draggable="true">
+                    <h3>Gulab Jamun</h3>
+                    <p>Rs.90</p>
+                </div>
+                <div class="items" data-price="180" data-name="Chocolate Brownie with Ice Cream" data-course="Dessert" draggable="true">
+                    <h3>Chocolate Brownie with Ice Cream</h3>
+                    <p>Rs.180</p>
+                </div>
+                <div class="items" data-price="120" data-name="Vanilla Ice Cream" data-course="Dessert" draggable="true">
+                    <h3>Vanilla Ice Cream</h3>
+                    <p>Rs.120</p>
+                </div>
+                <div class="items" data-price="140" data-name="Rasmalai" data-course="Dessert" draggable="true">
+                    <h3>Rasmalai</h3>
+                    <p>Rs.140</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="orderModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Table Order Details</h2>
+            <span id="closeModal">&times;</span>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="orderBody">
+            </tbody>
+        </table>
+
+        <div class="modal-footer">
+            <h3>Total : ₹<span id="grandTotal">0</span></h3>
+            <button id="generateBill">
+                Close Session (Generate Bill)
+            </button>
+        </div>
+    </div>
+
+</div>
+  <script src="app.js"></script>
+  <script src="table_search.js"></script>
+  <script src="drag_over.js"></script>
+  <script src="drag_start.js"></script>
+  <script src="update_table.js"></script>
+  <script src="show_table.js"></script>
+  <script src="generate.js"></script>
+  </body>
+</html>
