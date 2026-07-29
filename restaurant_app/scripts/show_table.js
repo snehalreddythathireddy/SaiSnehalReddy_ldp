@@ -1,4 +1,4 @@
-function showTableOrder(tableName) {
+const showTableOrder = (tableName) => {
     modalTitle.textContent = tableName + " Order Details";
     orderBody.innerHTML = "";
 

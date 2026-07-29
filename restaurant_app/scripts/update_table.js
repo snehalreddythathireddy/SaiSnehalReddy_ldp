@@ -1,4 +1,4 @@
-function updateTable(tableName) {
+const updateTable = (tableName) => {
     const table = document.querySelector(`.table-item[data-name="${tableName}"]`);
 
     let total = 0;
