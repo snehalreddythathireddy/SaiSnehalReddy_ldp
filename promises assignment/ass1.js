@@ -1,4 +1,4 @@
-function getData=(uId, callback)=> {
+const getData=(uId, callback)=> {
     setTimeout(() => {
         console.log("Fetched the data!");
         callback("skc@gmail.com");
