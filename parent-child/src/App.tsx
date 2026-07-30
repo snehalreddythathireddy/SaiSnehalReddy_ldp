@@ -1,4 +1,4 @@
-import SignInCard from './components/molecules/SignInCard';
+import SignInCard from './components/organism/SignInCard';
 
 function App() {
   return (

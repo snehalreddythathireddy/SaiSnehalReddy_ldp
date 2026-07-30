@@ -1,15 +1,17 @@
-import { FcGoogle } from 'react-icons/fc';
-import { FaGithub } from 'react-icons/fa';
+import type { ComponentType, SVGProps } from "react";
 
 interface IconProps {
-  name: 'google' | 'github';
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  width?: number;
+  height?: number;
 }
 
-const Icon = ({ name }: IconProps) => {
-  if (name === 'google') {
-    return <FcGoogle size={20} />;
-  }
-  return <FaGithub size={20} color="#181717" />;
+const Icon = ({
+  icon: IconComponent,
+  width = 16,
+  height = 16,
+}: IconProps) => {
+  return <IconComponent width={width} height={height} />;
 };
 
 export default Icon;
