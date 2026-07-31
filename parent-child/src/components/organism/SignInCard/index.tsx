@@ -2,9 +2,11 @@ import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Checkbox from "../../atoms/Checkbox";
 import Button from "../../atoms/Button";
-import GoogleIcon from "../../../assets/icons/GoogleIcon";
-import GithubIcon from "../../../assets/icons/GithubIcon";
 import Icon from "../../atoms/Icon";
+import github from "../../../assets/icons/github.svg";
+import google from "../../../assets/icons/google.svg";
+
+
 const styles = {
   card: {
     maxWidth: "380px",
@@ -102,16 +104,32 @@ const SignInCard = () => {
           onClick={() => console.log("Google sign in")}
           style={styles.socialButton}
         >
-          <Icon icon={GoogleIcon} />
-          Sign in with Google
+          <Icon
+            src={google}
+            alt="Google icon"
+            width={24}
+            height={24}
+          />
+          <Typography
+            text="Sign in with Google"
+            variant="body"
+          />
         </button>
 
         <button
           onClick={() => console.log("GitHub sign in")}
           style={styles.socialButton}
-        >
-          <Icon icon={GithubIcon} />
-          Sign in with GitHub
+          >
+          <Icon
+            src={github}
+            alt="GitHub icon"
+            width={24}
+            height={24}
+          />
+          <Typography
+            text="Sign in with GitHub"
+            variant="body"
+          />
         </button>
       </div>
 
