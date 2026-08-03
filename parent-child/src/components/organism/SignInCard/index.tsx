@@ -5,7 +5,7 @@ import Button from "../../atoms/Button";
 import Icon from "../../atoms/Icon";
 import github from "../../../assets/icons/github.svg";
 import google from "../../../assets/icons/google.svg";
-
+import { SIGNIN_CONSTANTS } from "../../../utils/constants";
 
 const styles = {
   card: {
@@ -68,74 +68,109 @@ const styles = {
 };
 
 const SignInCard = () => {
+  const handleSignIn = () => {
+    console.log("Sign in clicked");
+  };
+
+  const handleGoogleSignIn = () => {
+    console.log("Google sign in");
+  };
+
+  const handleGitHubSignIn = () => {
+    console.log("GitHub sign in");
+  };
+
   return (
     <div style={styles.card}>
-      <Typography text="Sign in" variant="heading" />
-      <Typography text="Please enter your login credentials" variant="body" />
+      <Typography
+        text={SIGNIN_CONSTANTS.TITLE}
+        variant="heading"
+      />
+
+      <Typography
+        text={SIGNIN_CONSTANTS.SUBTITLE}
+        variant="body"
+      />
 
       <div style={styles.fields}>
         <TextField
-          label="Email"
+          label={SIGNIN_CONSTANTS.EMAIL_LABEL}
           type="email"
-          placeholder="you@example.com"
+          placeholder={SIGNIN_CONSTANTS.EMAIL_PLACEHOLDER}
         />
 
         <TextField
-          label="Password"
+          label={SIGNIN_CONSTANTS.PASSWORD_LABEL}
           type="password"
-          placeholder="********"
+          placeholder={SIGNIN_CONSTANTS.PASSWORD_PLACEHOLDER}
         />
       </div>
 
       <div style={styles.row}>
-        <Checkbox label="Remember me" />
-        <Typography text="Forgot password?" variant="link" />
+        <Checkbox label={SIGNIN_CONSTANTS.REMEMBER_ME} />
+
+        <Typography
+          text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
+          variant="link"
+        />
       </div>
 
       <Button
-        label="Sign in"
-        onClick={() => console.log("Sign in clicked")}
+        label={SIGNIN_CONSTANTS.SIGN_IN}
+        onClick={handleSignIn}
+        disabled={true}
       />
 
-      <div style={styles.divider}>or</div>
+      <div style={styles.divider}>
+        {SIGNIN_CONSTANTS.DIVIDER}
+      </div>
 
       <div style={styles.socialButtons}>
         <button
-          onClick={() => console.log("Google sign in")}
+          onClick={handleGoogleSignIn}
           style={styles.socialButton}
         >
           <Icon
             src={google}
-            alt="Google icon"
+            alt={SIGNIN_CONSTANTS.GOOGLE_ALT}
             width={24}
             height={24}
           />
+
           <Typography
-            text="Sign in with Google"
+            text={SIGNIN_CONSTANTS.GOOGLE_SIGN_IN}
             variant="body"
           />
         </button>
 
         <button
-          onClick={() => console.log("GitHub sign in")}
+          onClick={handleGitHubSignIn}
           style={styles.socialButton}
-          >
+        >
           <Icon
             src={github}
-            alt="GitHub icon"
+            alt={SIGNIN_CONSTANTS.GITHUB_ALT}
             width={24}
             height={24}
           />
+
           <Typography
-            text="Sign in with GitHub"
+            text={SIGNIN_CONSTANTS.GITHUB_SIGN_IN}
             variant="body"
           />
         </button>
       </div>
 
       <div style={styles.footer}>
-        <Typography text="Don't have an account?" variant="body" />
-        <Typography text="Sign up" variant="link" />
+        <Typography
+          text={SIGNIN_CONSTANTS.NO_ACCOUNT}
+          variant="body"
+        />
+
+        <Typography
+          text={SIGNIN_CONSTANTS.SIGN_UP}
+          variant="link"
+        />
       </div>
     </div>
   );

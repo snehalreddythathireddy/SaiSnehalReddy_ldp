@@ -1,0 +1,18 @@
+export const SIGNIN_CONSTANTS = {
+  TITLE: "Sign in",
+  SUBTITLE: "Please enter your login credentials",
+  EMAIL_LABEL: "Email",
+  EMAIL_PLACEHOLDER: "you@example.com",
+  PASSWORD_LABEL: "Password",
+  PASSWORD_PLACEHOLDER: "********",
+  REMEMBER_ME: "Remember me",
+  FORGOT_PASSWORD: "Forgot password?",
+  SIGN_IN: "Sign in",
+  DIVIDER: "or",
+  GOOGLE_SIGN_IN: "Sign in with Google",
+  GITHUB_SIGN_IN: "Sign in with GitHub",
+  GOOGLE_ALT: "Google icon",
+  GITHUB_ALT: "GitHub icon",
+  NO_ACCOUNT: "Don't have an account?",
+  SIGN_UP: "Sign up",
+};
