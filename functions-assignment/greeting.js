@@ -1,7 +1,7 @@
-function greet(name) {
+const greet=(name)=> {
   return "Hello, " + name + "!";
 }
-function displayMessage(callback, name) {
+const displayMessage=(callback, name)=> {
   console.log(callback(name));
 }
 displayMessage(greet, "Snehal");
