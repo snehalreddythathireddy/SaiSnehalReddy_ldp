@@ -22,12 +22,62 @@ const styles = {
     marginTop: "20px",
   },
 
+  textFieldWrapper: {
+    marginBottom: "16px",
+  },
+
+  textFieldLabel: {
+    display: "block",
+    marginBottom: "4px",
+    color: "#111827",
+  },
+
+  textFieldInput: {
+    width: "100%",
+    padding: "10px",
+    border: "1px solid #E5E7EB",
+    borderRadius: "6px",
+    color: "#111827",
+    outline: "none",
+  },
+
   row: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "20px",
     fontSize: "14px",
+  },
+
+  checkboxLabel: {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    fontSize: "14px",
+  },
+
+  signInButton: {
+    width: "100%",
+    padding: "10px",
+    borderRadius: "6px",
+    fontWeight: 500,
+    fontSize: "14px",
+    cursor: "pointer",
+    backgroundColor: "#6366F1",
+    color: "#fff",
+    border: "none",
+  },
+
+  signInButtonDisabled: {
+    width: "100%",
+    padding: "10px",
+    borderRadius: "6px",
+    fontWeight: 500,
+    fontSize: "14px",
+    cursor: "not-allowed",
+    backgroundColor: "#C7C7F5",
+    color: "#fff",
+    border: "none",
   },
 
   divider: {
@@ -97,17 +147,26 @@ const SignInCard = () => {
           label={SIGNIN_CONSTANTS.EMAIL_LABEL}
           type="email"
           placeholder={SIGNIN_CONSTANTS.EMAIL_PLACEHOLDER}
+          wrapperStyle={styles.textFieldWrapper}
+          labelStyle={styles.textFieldLabel}
+          inputStyle={styles.textFieldInput}
         />
 
         <TextField
           label={SIGNIN_CONSTANTS.PASSWORD_LABEL}
           type="password"
           placeholder={SIGNIN_CONSTANTS.PASSWORD_PLACEHOLDER}
+          wrapperStyle={styles.textFieldWrapper}
+          labelStyle={styles.textFieldLabel}
+          inputStyle={styles.textFieldInput}
         />
       </div>
 
       <div style={styles.row}>
-        <Checkbox label={SIGNIN_CONSTANTS.REMEMBER_ME} />
+        <Checkbox
+          label={SIGNIN_CONSTANTS.REMEMBER_ME}
+          style={styles.checkboxLabel}
+        />
 
         <Typography
           text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
@@ -119,6 +178,7 @@ const SignInCard = () => {
         label={SIGNIN_CONSTANTS.SIGN_IN}
         onClick={handleSignIn}
         disabled={true}
+        style={styles.signInButtonDisabled}
       />
 
       <div style={styles.divider}>
