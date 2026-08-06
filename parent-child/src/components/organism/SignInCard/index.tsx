@@ -108,6 +108,23 @@ const styles = {
     fontWeight: 500,
   },
 
+  typographyHeading: {
+    color: "#111827",
+    margin: 0,
+  },
+
+  typographyBody: {
+    color: "#9CA3AF",
+    margin: "4px 0 0 0",
+  },
+
+  typographyLink: {
+    color: "#6366F1",
+    textDecoration: "none",
+    fontWeight: 500,
+    fontSize: "14px",
+  },
+
   footer: {
     display: "flex",
     justifyContent: "center",
@@ -135,11 +152,13 @@ const SignInCard = () => {
       <Typography
         text={SIGNIN_CONSTANTS.TITLE}
         variant="heading"
+        style={styles.typographyHeading}
       />
 
       <Typography
         text={SIGNIN_CONSTANTS.SUBTITLE}
         variant="body"
+        style={styles.typographyBody}
       />
 
       <div style={styles.fields}>
@@ -171,6 +190,7 @@ const SignInCard = () => {
         <Typography
           text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
           variant="link"
+          style={styles.typographyLink}
         />
       </div>
 
@@ -200,6 +220,7 @@ const SignInCard = () => {
           <Typography
             text={SIGNIN_CONSTANTS.GOOGLE_SIGN_IN}
             variant="body"
+            style={styles.typographyBody}
           />
         </button>
 
@@ -217,6 +238,7 @@ const SignInCard = () => {
           <Typography
             text={SIGNIN_CONSTANTS.GITHUB_SIGN_IN}
             variant="body"
+            style={styles.typographyBody}
           />
         </button>
       </div>
@@ -225,11 +247,13 @@ const SignInCard = () => {
         <Typography
           text={SIGNIN_CONSTANTS.NO_ACCOUNT}
           variant="body"
+          style={styles.typographyBody}
         />
 
         <Typography
           text={SIGNIN_CONSTANTS.SIGN_UP}
           variant="link"
+          style={styles.typographyLink}
         />
       </div>
     </div>
