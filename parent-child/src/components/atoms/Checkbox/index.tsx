@@ -1,18 +1,38 @@
-import type { CSSProperties } from 'react';
+import MuiCheckbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import type { SxProps, Theme } from "@mui/material/styles";
 
 interface CheckboxProps {
-  label?: string;
+  label: string;
   checked?: boolean;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  style?: CSSProperties;
+  disabled?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  checkboxSx?: SxProps<Theme>;
+  formControlSx?: SxProps<Theme>;
 }
 
-const Checkbox = ({ label, checked, onChange, style }: CheckboxProps) => {
+const Checkbox = ({
+  label,
+  checked,
+  disabled = false,
+  onChange,
+  checkboxSx,
+  formControlSx,
+}: CheckboxProps) => {
   return (
-    <label style={style}>
-      <input type="checkbox" checked={checked} onChange={onChange} />
-      {label}
-    </label>
+    <FormControlLabel
+      sx={formControlSx}
+      label={label}
+      control={
+        <MuiCheckbox
+          checked={checked}
+          disabled={disabled}
+          onChange={onChange}
+          disableRipple
+          sx={checkboxSx}
+        />
+      }
+    />
   );
 };
 

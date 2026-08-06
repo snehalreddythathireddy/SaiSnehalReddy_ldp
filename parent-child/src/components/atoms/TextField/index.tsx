@@ -1,35 +1,34 @@
-import type { CSSProperties } from 'react';
+import MuiTextField from "@mui/material/TextField";
+import type { CSSProperties } from "react";
+import type { SxProps, Theme } from "@mui/material/styles";
 
 interface TextFieldProps {
   label: string;
-  type?: 'text' | 'email' | 'password';
+  type?: "text" | "email" | "password";
   placeholder?: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  wrapperStyle?: CSSProperties;
+  containerStyle?: CSSProperties;
   labelStyle?: CSSProperties;
-  inputStyle?: CSSProperties;
+  textFieldSx?: SxProps<Theme>;
 }
 
 const TextField = ({
   label,
-  type = 'text',
+  type = "text",
   placeholder,
-  value,
-  onChange,
-  wrapperStyle,
+  containerStyle,
   labelStyle,
-  inputStyle,
+  textFieldSx,
 }: TextFieldProps) => {
   return (
-    <div style={wrapperStyle}>
+    <div style={containerStyle}>
       <label style={labelStyle}>{label}</label>
-      <input
+
+      <MuiTextField
+        fullWidth
+        variant="outlined"
         type={type}
         placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        style={inputStyle}
+        sx={textFieldSx}
       />
     </div>
   );
