@@ -3,255 +3,304 @@ import TextField from "../../atoms/TextField";
 import Checkbox from "../../atoms/Checkbox";
 import Button from "../../atoms/Button";
 import Icon from "../../atoms/Icon";
-import github from "../../../assets/icons/github.svg";
-import google from "../../../assets/icons/google.svg";
-import { SIGNIN_CONSTANTS } from "../../../utils/constants";
+
+import GoogleIcon from "../../../assets/icons/GoogleIcon";
+import GithubIcon from "../../../assets/icons/GithubIcon";
+
+import theme from "../../../theme/theme";
 
 const styles = {
   card: {
-    maxWidth: "380px",
+    width: theme.layout.cardWidth,
+    minHeight: theme.layout.cardHeight,
     margin: "40px auto",
-    padding: "32px",
-    borderRadius: "12px",
-    border: "1px solid #e5e5e5",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-    backgroundColor: "#fff",
+    padding: theme.spacing.xl,
+    background: theme.colors.white,
+    border: `1px solid ${theme.colors.border}`,
+    borderRadius: theme.radius.sm,
+    boxShadow: theme.shadow.card,
+    boxSizing: "border-box" as const,
   },
 
-  fields: {
-    marginTop: "20px",
+  heading: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.lg,
   },
 
-  textFieldWrapper: {
-    marginBottom: "16px",
+  form: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: theme.layout.formGap,
   },
 
-  textFieldLabel: {
-    display: "block",
-    marginBottom: "4px",
-    color: "#111827",
-  },
-
-  textFieldInput: {
-    width: "100%",
-    padding: "10px",
-    border: "1px solid #E5E7EB",
-    borderRadius: "6px",
-    color: "#111827",
-    outline: "none",
-  },
-
-  row: {
+  rememberRow: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "20px",
-    fontSize: "14px",
-  },
-
-  checkboxLabel: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    fontSize: "14px",
-  },
-
-  signInButton: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    fontWeight: 500,
-    fontSize: "14px",
-    cursor: "pointer",
-    backgroundColor: "#6366F1",
-    color: "#fff",
-    border: "none",
-  },
-
-  signInButtonDisabled: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    fontWeight: 500,
-    fontSize: "14px",
-    cursor: "not-allowed",
-    backgroundColor: "#C7C7F5",
-    color: "#fff",
-    border: "none",
   },
 
   divider: {
-    textAlign: "center" as const,
-    margin: "16px 0",
-    color: "#999",
-    fontSize: "14px",
+    display: "flex",
+    alignItems: "center",
+    margin: "20px 0",
+  },
+
+  dividerLine: {
+    flex: 1,
+    height: "1px",
+    backgroundColor: theme.colors.border,
+  },
+
+  dividerText: {
+    margin: "0 12px",
   },
 
   socialButtons: {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "10px",
+    gap: theme.spacing.sm,
   },
 
   socialButton: {
+    width: "100%",
+    height: theme.layout.buttonHeight,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: "8px",
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-    backgroundColor: "#fff",
+    gap: "12px",
+    border: `1px solid ${theme.colors.border}`,
+    borderRadius: theme.radius.xs,
+    background: theme.colors.white,
     cursor: "pointer",
-    fontSize: "14px",
-    fontWeight: 500,
-  },
-
-  typographyHeading: {
-    color: "#111827",
-    margin: 0,
-  },
-
-  typographyBody: {
-    color: "#9CA3AF",
-    margin: "4px 0 0 0",
-  },
-
-  typographyLink: {
-    color: "#6366F1",
-    textDecoration: "none",
-    fontWeight: 500,
-    fontSize: "14px",
+    fontFamily: theme.typography.body.fontFamily,
+    fontSize: theme.typography.body.fontSize,
+    fontWeight: theme.typography.body.fontWeight,
+    lineHeight: theme.typography.body.lineHeight,
+    color: theme.colors.textPrimary,
   },
 
   footer: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    gap: "4px",
-    marginTop: "16px",
+    gap: theme.spacing.xs,
+    marginTop: theme.spacing.md,
+  },
+
+  buttonBase: {
+    height: theme.layout.buttonHeight,
+    borderRadius: theme.radius.xs,
+    textTransform: "none" as const,
+    boxShadow: "none",
+    fontFamily: theme.typography.button.fontFamily,
+    fontSize: theme.typography.button.fontSize,
+    fontWeight: theme.typography.button.fontWeight,
+    lineHeight: theme.typography.button.lineHeight,
+    letterSpacing: theme.typography.button.letterSpacing,
+    "&:hover": {
+      boxShadow: "none",
+    },
+  },
+
+  buttonPrimary: {
+    backgroundColor: theme.colors.primary,
+    color: theme.colors.white,
+    "&:hover": {
+      backgroundColor: theme.colors.primary,
+    },
+    "&.Mui-disabled": {
+      backgroundColor: theme.colors.primaryDisabled,
+      color: theme.colors.white,
+    },
+  },
+
+  checkboxSx: {
+    padding: 0,
+    "& .MuiSvgIcon-root": {
+      fontSize: 18,
+    },
+    color: theme.colors.border,
+    "&.Mui-checked": {
+      color: theme.colors.primary,
+    },
+    "&.Mui-disabled": {
+      color: theme.colors.primaryDisabled,
+    },
+  },
+
+  checkboxFormControlSx: {
+    margin: 0,
+    "& .MuiFormControlLabel-label": {
+      marginLeft: theme.spacing.sm,
+      fontFamily: theme.typography.body.fontFamily,
+      fontSize: theme.typography.body.fontSize,
+      fontWeight: theme.typography.body.fontWeight,
+      lineHeight: theme.typography.body.lineHeight,
+      letterSpacing: theme.typography.body.letterSpacing,
+      color: theme.colors.textSecondary,
+    },
+  },
+
+  textFieldContainer: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: theme.spacing.xs,
+  },
+
+  textFieldLabel: {
+    fontFamily: theme.typography.label.fontFamily,
+    fontSize: theme.typography.label.fontSize,
+    fontWeight: theme.typography.label.fontWeight,
+    lineHeight: theme.typography.label.lineHeight,
+    color: theme.colors.textSecondary,
+  },
+
+  textFieldSx: {
+    "& .MuiOutlinedInput-root": {
+      height: theme.layout.inputHeight,
+      borderRadius: theme.radius.xs,
+      "& fieldset": {
+        borderColor: theme.colors.border,
+      },
+      "&:hover fieldset": {
+        borderColor: theme.colors.border,
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: theme.colors.primary,
+      },
+    },
+    "& .MuiInputBase-input": {
+      padding: "8px 12px",
+      fontFamily: theme.typography.input.fontFamily,
+      fontSize: theme.typography.input.fontSize,
+      fontWeight: theme.typography.input.fontWeight,
+      lineHeight: theme.typography.input.lineHeight,
+      color: theme.colors.textPrimary,
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color: theme.colors.textSecondary,
+      opacity: 1,
+    },
+  },
+
+  typographyH1: {
+    margin: 0,
+    fontFamily: theme.typography.h1.fontFamily,
+    fontSize: theme.typography.h1.fontSize,
+    fontWeight: theme.typography.h1.fontWeight,
+    lineHeight: theme.typography.h1.lineHeight,
+    letterSpacing: theme.typography.h1.letterSpacing,
+    color: theme.colors.textPrimary,
+  },
+
+  typographyBody: {
+    margin: 0,
+    fontFamily: theme.typography.body.fontFamily,
+    fontSize: theme.typography.body.fontSize,
+    fontWeight: theme.typography.body.fontWeight,
+    lineHeight: theme.typography.body.lineHeight,
+    letterSpacing: theme.typography.body.letterSpacing,
+    color: theme.colors.textSecondary,
+  },
+
+  typographyLink: {
+    margin: 0,
+    fontFamily: theme.typography.link.fontFamily,
+    fontSize: theme.typography.link.fontSize,
+    fontWeight: theme.typography.link.fontWeight,
+    lineHeight: theme.typography.link.lineHeight,
+    letterSpacing: theme.typography.link.letterSpacing,
+    color: theme.colors.primary,
+    textDecoration: "none",
+    cursor: "pointer",
   },
 };
 
 const SignInCard = () => {
-  const handleSignIn = () => {
-    console.log("Sign in clicked");
-  };
-
-  const handleGoogleSignIn = () => {
-    console.log("Google sign in");
-  };
-
-  const handleGitHubSignIn = () => {
-    console.log("GitHub sign in");
-  };
-
   return (
     <div style={styles.card}>
-      <Typography
-        text={SIGNIN_CONSTANTS.TITLE}
-        variant="heading"
-        style={styles.typographyHeading}
-      />
-
-      <Typography
-        text={SIGNIN_CONSTANTS.SUBTITLE}
-        variant="body"
-        style={styles.typographyBody}
-      />
-
-      <div style={styles.fields}>
-        <TextField
-          label={SIGNIN_CONSTANTS.EMAIL_LABEL}
-          type="email"
-          placeholder={SIGNIN_CONSTANTS.EMAIL_PLACEHOLDER}
-          wrapperStyle={styles.textFieldWrapper}
-          labelStyle={styles.textFieldLabel}
-          inputStyle={styles.textFieldInput}
-        />
-
-        <TextField
-          label={SIGNIN_CONSTANTS.PASSWORD_LABEL}
-          type="password"
-          placeholder={SIGNIN_CONSTANTS.PASSWORD_PLACEHOLDER}
-          wrapperStyle={styles.textFieldWrapper}
-          labelStyle={styles.textFieldLabel}
-          inputStyle={styles.textFieldInput}
-        />
-      </div>
-
-      <div style={styles.row}>
-        <Checkbox
-          label={SIGNIN_CONSTANTS.REMEMBER_ME}
-          style={styles.checkboxLabel}
-        />
+      <div style={styles.heading}>
+        <Typography text="Sign in" variant="h1" style={styles.typographyH1} />
 
         <Typography
-          text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
-          variant="link"
-          style={styles.typographyLink}
+          text="Please enter your login credentials"
+          variant="body"
+          style={styles.typographyBody}
         />
       </div>
 
-      <Button
-        label={SIGNIN_CONSTANTS.SIGN_IN}
-        onClick={handleSignIn}
-        disabled={true}
-        style={styles.signInButtonDisabled}
-      />
+      <div style={styles.form}>
+        <TextField
+          label="Email"
+          type="email"
+          placeholder="rhernandez@gmail.com"
+          containerStyle={styles.textFieldContainer}
+          labelStyle={styles.textFieldLabel}
+          textFieldSx={styles.textFieldSx}
+        />
+
+        <TextField
+          label="Password"
+          type="password"
+          placeholder="********"
+          containerStyle={styles.textFieldContainer}
+          labelStyle={styles.textFieldLabel}
+          textFieldSx={styles.textFieldSx}
+        />
+
+        <div style={styles.rememberRow}>
+          <Checkbox
+            label="Remember me"
+            checkboxSx={styles.checkboxSx}
+            formControlSx={styles.checkboxFormControlSx}
+          />
+
+          <Typography
+            text="Forgot password?"
+            variant="link"
+            style={styles.typographyLink}
+          />
+        </div>
+
+        <Button
+          label="Sign In"
+          type="submit"
+          sx={{ ...styles.buttonBase, ...styles.buttonPrimary }}
+        />
+      </div>
 
       <div style={styles.divider}>
-        {SIGNIN_CONSTANTS.DIVIDER}
+        <div style={styles.dividerLine}></div>
+
+        <div style={styles.dividerText}>
+          <Typography text="or" variant="body" style={styles.typographyBody} />
+        </div>
+
+        <div style={styles.dividerLine}></div>
       </div>
 
       <div style={styles.socialButtons}>
-        <button
-          onClick={handleGoogleSignIn}
-          style={styles.socialButton}
-        >
-          <Icon
-            src={google}
-            alt={SIGNIN_CONSTANTS.GOOGLE_ALT}
-            width={24}
-            height={24}
-          />
-
-          <Typography
-            text={SIGNIN_CONSTANTS.GOOGLE_SIGN_IN}
-            variant="body"
-            style={styles.typographyBody}
-          />
+        <button style={styles.socialButton}>
+          <Icon icon={GoogleIcon} width={18} height={18} />
+          Sign in with Google
         </button>
 
-        <button
-          onClick={handleGitHubSignIn}
-          style={styles.socialButton}
-        >
-          <Icon
-            src={github}
-            alt={SIGNIN_CONSTANTS.GITHUB_ALT}
-            width={24}
-            height={24}
-          />
-
-          <Typography
-            text={SIGNIN_CONSTANTS.GITHUB_SIGN_IN}
-            variant="body"
-            style={styles.typographyBody}
-          />
+        <button style={styles.socialButton}>
+          <Icon icon={GithubIcon} width={18} height={18} />
+          Sign in with GitHub
         </button>
       </div>
 
       <div style={styles.footer}>
         <Typography
-          text={SIGNIN_CONSTANTS.NO_ACCOUNT}
+          text="Don't have an account?"
           variant="body"
           style={styles.typographyBody}
         />
 
         <Typography
-          text={SIGNIN_CONSTANTS.SIGN_UP}
+          text="Sign up"
           variant="link"
           style={styles.typographyLink}
         />

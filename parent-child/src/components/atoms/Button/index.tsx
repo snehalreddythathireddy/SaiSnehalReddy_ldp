@@ -1,17 +1,36 @@
-import type { CSSProperties } from 'react';
+import MuiButton from "@mui/material/Button";
+import type { SxProps, Theme } from "@mui/material/styles";
 
 interface ButtonProps {
   label: string;
-  onClick?: () => void;
+  variant?: "primary" | "secondary";
+  type?: "button" | "submit" | "reset";
   disabled?: boolean;
-  style?: CSSProperties;
+  fullWidth?: boolean;
+  onClick?: () => void;
+  sx?: SxProps<Theme>;
 }
 
-const Button = ({ label, onClick, disabled = false, style }: ButtonProps) => {
+const Button = ({
+  label,
+  variant = "primary",
+  type = "button",
+  disabled = false,
+  fullWidth = true,
+  onClick,
+  sx,
+}: ButtonProps) => {
   return (
-    <button onClick={onClick} disabled={disabled} style={style}>
+    <MuiButton
+      type={type}
+      variant={variant === "primary" ? "contained" : "outlined"}
+      disabled={disabled}
+      fullWidth={fullWidth}
+      onClick={onClick}
+      sx={sx}
+    >
       {label}
-    </button>
+    </MuiButton>
   );
 };
 

@@ -1,6 +1,6 @@
 import SignInCard from './components/organism/SignInCard';
 
-const= App() => {
+function App() {
   return (
     <div className="App">
       <SignInCard />
