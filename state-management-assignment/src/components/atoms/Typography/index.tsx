@@ -25,15 +25,10 @@ const Typography = ({
   children,
   variant = "body1",
   color,
+  sx,
 }: TypographyProps) => {
   return (
-    <MuiTypography
-      variant={variant}
-      color={color}
-      sx={{
-        fontFamily: "Inter",}}
-      
-    >
+    <MuiTypography variant={variant} color={color} sx={sx}>
       {children}
     </MuiTypography>
   );

@@ -8,24 +8,10 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import Typography from "../../atoms/Typography";
 import Icon from "../../atoms/Icon";
 
-import DashboardIcon from "../../../icons/Dashboard.svg";
-import ContactsIcon from "../../../icons/Contacts.svg";
-import HammerIcon from "../../../icons/hammer.svg";
-import LogsIcon from "../../../icons/logs.svg";
-import AnalyticsIcon from "../../../icons/Analytics.svg";
-import AccountIcon from "../../../icons/Account.svg";
-import ScreeningIcon from "../../../icons/Screening.svg";
-import LogoIcon from "../../../icons/Logo.svg";
+import LogoIcon from "../../../assets/icons/logo.svg";
 
-const menuItems = [
-  { label: "Home", icon: DashboardIcon },
-  { label: "Candidates", icon: ContactsIcon },
-  { label: "Adverse Actions", icon: HammerIcon },
-  { label: "Logs", icon: LogsIcon },
-  { label: "Analytics", icon: AnalyticsIcon },
-  { label: "Account", icon: AccountIcon },
-  { label: "Screenings", icon: ScreeningIcon },
-];
+import { SIDEBAR_MENU_ITEMS, type MenuItem } from "../../../utils/constants";
+import { customShadows } from "../../../theme/theme";
 
 const styles: Record<string, SxProps<Theme>> = {
   root: {
@@ -35,7 +21,7 @@ const styles: Record<string, SxProps<Theme>> = {
     p: 2,
     display: "flex",
     flexDirection: "column",
-    boxShadow: "0px 4px 20px rgba(0,0,0,0.08)",
+    boxShadow: customShadows.sidebar,
   },
 
   logo: {
@@ -91,7 +77,7 @@ const Sidebar = () => {
       </Typography>
 
       <List sx={styles.menu}>
-        {menuItems.map((item) => {
+        {SIDEBAR_MENU_ITEMS.map((item: MenuItem) => {
           const isSelected =
             item.label === "Candidates";
 

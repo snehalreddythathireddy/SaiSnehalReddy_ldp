@@ -1,5 +1,9 @@
 import { createTheme } from "@mui/material/styles";
 
+export const customShadows = {
+  sidebar: "0px 4px 20px rgba(0,0,0,0.08)",
+};
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -37,35 +41,11 @@ const theme = createTheme({
   typography: {
     fontFamily: "Inter, sans-serif",
 
-    h1: {
-      fontSize: "20px",
-      fontWeight: 500,
-      lineHeight: "30px",
-    },
-
-    h5: {
-      fontSize: "20px",
-      fontWeight: 500,
-      lineHeight: "30px",
-    },
-
-    h6: {
-      fontSize: "16px",
-      fontWeight: 500,
-      lineHeight: "24px",
-    },
-
-    body1: {
-      fontSize: "14px",
-      fontWeight: 400,
-      lineHeight: "20px",
-    },
-
-    body2: {
-      fontSize: "14px",
-      fontWeight: 400,
-      lineHeight: "20px",
-    },
+    h1: { fontSize: "20px", fontWeight: 500, lineHeight: "30px" },
+    h5: { fontSize: "20px", fontWeight: 500, lineHeight: "30px" },
+    h6: { fontSize: "16px", fontWeight: 500, lineHeight: "24px" },
+    body1: { fontSize: "14px", fontWeight: 400, lineHeight: "20px" },
+    body2: { fontSize: "14px", fontWeight: 400, lineHeight: "20px" },
 
     caption: {
       fontSize: "12px",

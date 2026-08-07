@@ -13,6 +13,7 @@ import FilterDropdown from "../../components/molecules/FilterDropdown";
 import Typography from "../../components/atoms/Typography";
 
 import { candidates } from "../../mock/candidates";
+import type { Candidate } from "../../mock/candidates";
 
 const styles: Record<string, SxProps<Theme>> = {
   page: {
@@ -50,15 +51,16 @@ const styles: Record<string, SxProps<Theme>> = {
 };
 
 const Candidates = () => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
 
-  const [showFilter, setShowFilter] = useState(false);
+  const [showFilter, setShowFilter] = useState<boolean>(false);
 
-  const [status, setStatus] = useState("All Status");
+  const [status, setStatus] = useState<string>("All Status");
 
-  const [adjudication, setAdjudication] = useState("All");
+  const [adjudication, setAdjudication] = useState<string>("All");
 
-  const [candidateList, setCandidateList] = useState(candidates);
+  const [candidateList, setCandidateList] =
+    useState<Candidate[]>(candidates);
 
   useEffect(() => {
     if (status === "All Status") {

@@ -7,6 +7,11 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 
 import Typography from "../../atoms/Typography";
 
+import {
+  PAGINATION_RESULTS_TEXT,
+  PAGINATION_PER_PAGE_TEXT,
+} from "../../../utils/constants";
+
 const styles: Record<string, SxProps<Theme>> = {
   root: {
     mt: 2,
@@ -41,11 +46,11 @@ const Pagination = () => {
     <Box sx={styles.root}>
       <Box sx={styles.left}>
         <Typography variant="caption">
-          10 out of 84 results
+          {PAGINATION_RESULTS_TEXT}
         </Typography>
 
         <Typography variant="caption">
-          10 per page
+          {PAGINATION_PER_PAGE_TEXT}
         </Typography>
       </Box>
 
