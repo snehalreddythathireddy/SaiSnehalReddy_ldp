@@ -1,21 +1,26 @@
+import type { CSSProperties } from "react";
+import type { SxProps, Theme } from "@mui/material/styles";
+
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Checkbox from "../../atoms/Checkbox";
 import Button from "../../atoms/Button";
 import Icon from "../../atoms/Icon";
+
 import github from "../../../assets/icons/github.svg";
 import google from "../../../assets/icons/google.svg";
+
 import { SIGNIN_CONSTANTS } from "../../../utils/constants";
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   card: {
     maxWidth: "380px",
     margin: "40px auto",
     padding: "32px",
     borderRadius: "12px",
-    border: "1px solid #e5e5e5",
+    border: "1px solid #E5E5E5",
     boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
   },
 
   fields: {
@@ -56,32 +61,8 @@ const styles = {
     fontSize: "14px",
   },
 
-  signInButton: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    fontWeight: 500,
-    fontSize: "14px",
-    cursor: "pointer",
-    backgroundColor: "#6366F1",
-    color: "#fff",
-    border: "none",
-  },
-
-  signInButtonDisabled: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    fontWeight: 500,
-    fontSize: "14px",
-    cursor: "not-allowed",
-    backgroundColor: "#C7C7F5",
-    color: "#fff",
-    border: "none",
-  },
-
   divider: {
-    textAlign: "center" as const,
+    textAlign: "center",
     margin: "16px 0",
     color: "#999",
     fontSize: "14px",
@@ -89,23 +70,8 @@ const styles = {
 
   socialButtons: {
     display: "flex",
-    flexDirection: "column" as const,
+    flexDirection: "column",
     gap: "10px",
-  },
-
-  socialButton: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "8px",
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-    backgroundColor: "#fff",
-    cursor: "pointer",
-    fontSize: "14px",
-    fontWeight: 500,
   },
 
   typographyHeading: {
@@ -132,6 +98,19 @@ const styles = {
     gap: "4px",
     marginTop: "16px",
   },
+};
+
+const signInButtonSx: SxProps<Theme> = {
+  borderRadius: 1.5,
+  textTransform: "none",
+  py: 1.3,
+};
+
+const socialButtonSx: SxProps<Theme> = {
+  borderRadius: 1.5,
+  textTransform: "none",
+  py: 1.2,
+  justifyContent: "center",
 };
 
 const SignInCard = () => {
@@ -195,52 +174,52 @@ const SignInCard = () => {
       </div>
 
       <Button
-        label={SIGNIN_CONSTANTS.SIGN_IN}
         onClick={handleSignIn}
-        disabled={true}
-        style={styles.signInButtonDisabled}
-      />
+        disabled
+        fullWidth
+        sx={signInButtonSx}
+      >
+        {SIGNIN_CONSTANTS.SIGN_IN}
+      </Button>
 
       <div style={styles.divider}>
         {SIGNIN_CONSTANTS.DIVIDER}
       </div>
 
       <div style={styles.socialButtons}>
-        <button
+        <Button
           onClick={handleGoogleSignIn}
-          style={styles.socialButton}
+          variant="outlined"
+          fullWidth
+          startIcon={
+            <Icon
+              src={google}
+              alt={SIGNIN_CONSTANTS.GOOGLE_ALT}
+              width={20}
+              height={20}
+            />
+          }
+          sx={socialButtonSx}
         >
-          <Icon
-            src={google}
-            alt={SIGNIN_CONSTANTS.GOOGLE_ALT}
-            width={24}
-            height={24}
-          />
+          {SIGNIN_CONSTANTS.GOOGLE_SIGN_IN}
+        </Button>
 
-          <Typography
-            text={SIGNIN_CONSTANTS.GOOGLE_SIGN_IN}
-            variant="body"
-            style={styles.typographyBody}
-          />
-        </button>
-
-        <button
+        <Button
           onClick={handleGitHubSignIn}
-          style={styles.socialButton}
+          variant="outlined"
+          fullWidth
+          startIcon={
+            <Icon
+              src={github}
+              alt={SIGNIN_CONSTANTS.GITHUB_ALT}
+              width={20}
+              height={20}
+            />
+          }
+          sx={socialButtonSx}
         >
-          <Icon
-            src={github}
-            alt={SIGNIN_CONSTANTS.GITHUB_ALT}
-            width={24}
-            height={24}
-          />
-
-          <Typography
-            text={SIGNIN_CONSTANTS.GITHUB_SIGN_IN}
-            variant="body"
-            style={styles.typographyBody}
-          />
-        </button>
+          {SIGNIN_CONSTANTS.GITHUB_SIGN_IN}
+        </Button>
       </div>
 
       <div style={styles.footer}>
