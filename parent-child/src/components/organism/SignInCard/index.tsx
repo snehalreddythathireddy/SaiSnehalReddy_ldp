@@ -61,6 +61,7 @@ const styles = {
     display: "flex",
     flexDirection: "column" as const,
     gap: theme.spacing.sm,
+    textTransform: theme.typography.button.textTransform,
   },
 
   socialButton: {
@@ -79,6 +80,7 @@ const styles = {
     fontWeight: theme.typography.body.fontWeight,
     lineHeight: theme.typography.body.lineHeight,
     color: theme.colors.textPrimary,
+    textTransform: theme.typography.button.textTransform,
   },
 
   footer: {
@@ -221,7 +223,11 @@ const SignInCard = () => {
   return (
     <div style={styles.card}>
       <div style={styles.heading}>
-        <Typography text="Sign in" variant="h1" style={styles.typographyH1} />
+        <Typography
+          text="Sign In"
+          variant="h1"
+          style={styles.typographyH1}
+        />
 
         <Typography
           text="Please enter your login credentials"
@@ -267,6 +273,7 @@ const SignInCard = () => {
           label="Sign In"
           type="submit"
           sx={{ ...styles.buttonBase, ...styles.buttonPrimary }}
+      
         />
       </div>
 
@@ -274,22 +281,42 @@ const SignInCard = () => {
         <div style={styles.dividerLine}></div>
 
         <div style={styles.dividerText}>
-          <Typography text="or" variant="body" style={styles.typographyBody} />
+          <Typography
+            text="or"
+            variant="body"
+            style={styles.typographyBody}
+          />
         </div>
 
         <div style={styles.dividerLine}></div>
       </div>
 
       <div style={styles.socialButtons}>
-        <button style={styles.socialButton}>
-          <Icon icon={GoogleIcon} width={18} height={18} />
-          Sign in with Google
-        </button>
+        <Button
+          label="Sign in with Google"
+          variant="secondary"
+          startIcon={
+            <Icon
+              icon={GoogleIcon}
+              width={18}
+              height={18}
+            />
+          }
+          sx={styles.socialButton}
+        />
 
-        <button style={styles.socialButton}>
-          <Icon icon={GithubIcon} width={18} height={18} />
-          Sign in with GitHub
-        </button>
+        <Button
+          label="Sign in with GitHub"
+          variant="secondary"
+          startIcon={
+            <Icon
+              icon={GithubIcon}
+              width={18}
+              height={18}
+            />
+          }
+          sx={styles.socialButton}
+        />
       </div>
 
       <div style={styles.footer}>

@@ -68,6 +68,7 @@ const theme = {
       fontWeight: 500,
       lineHeight: "20px",
       letterSpacing: "0%",
+      textTransform: "none",
     },
 
     link: {
