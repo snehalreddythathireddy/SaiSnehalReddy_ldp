@@ -42,3 +42,5 @@ export const SUMMARY_CARD_REVIEW_BUTTON_LABEL = "Review Your Credit";
 export const NEW_CASH_KICK_PAGE_TITLE = "New cash kick";
 export const NEW_CASH_KICK_PAGE_SUBTITLE = "Let's setup a new cash kick to power your SaaS";
 export const NEW_CASH_KICK_PAGE_REVIEW_ALERT_PREFIX = "Reviewing credit for ";
+export const NEW_CASH_KICK_PAGE_LOADING_LABEL = "Loading...";
+export const NEW_CASH_KICK_PAGE_ERROR_LABEL = "Something went wrong loading this page. Please try again.";
