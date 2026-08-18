@@ -2,9 +2,18 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import ContractRow from "./index";
-import { CONTRACTS } from "../../../mocks/contracts";
+import type { Contract } from "../../../types/contract";
 
-const contract = CONTRACTS[0];
+const contract: Contract = {
+  id: 1,
+  name: "Contract 1",
+  type: "Monthly",
+  perPayment: 12000.25,
+  termLength: 12,
+  availableCredit: 126983.33,
+  payment: 126983.33,
+  checked: false,
+};
 
 const noop = () => {};
 
