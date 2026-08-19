@@ -2,19 +2,13 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
-const headers = [
-  "NAME",
-  "ADJUDICATION",
-  "STATUS",
-  "LOCATION",
-  "DATE",
-];
+import { TABLE_HEADERS } from "../../../utils/constants";
 
 const TableHeader = () => {
   return (
     <TableHead>
       <TableRow>
-        {headers.map((header) => (
+        {TABLE_HEADERS.map((header) => (
           <TableCell key={header}>{header}</TableCell>
         ))}
       </TableRow>

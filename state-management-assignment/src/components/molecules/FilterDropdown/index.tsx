@@ -2,61 +2,45 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import type { SxProps, Theme } from "@mui/material/styles";
 
 import Checkbox from "../../atoms/Checkbox";
 import Typography from "../../atoms/Typography";
+import styles from "./styles";
 
 import { STATUS_OPTIONS, ADJUDICATION_OPTIONS } from "../../../utils/constants";
 
 interface FilterDropdownProps {
   status: string;
   setStatus: (value: string) => void;
-
   adjudication: string;
   setAdjudication: (value: string) => void;
 }
 
-const styles: Record<string, SxProps<Theme>> = {
-  root: {
-    width: 253,
-    bgcolor: "background.paper",
-    border: "1px solid",
-    borderColor: "divider",
-    p: 2,
-  },
+interface FilterOptionRowProps {
+  option: string;
+  selected: boolean;
+  onSelect: (option: string) => void;
+}
 
-  sectionLabel: {
-    mb: 1.5,
-  },
+const FilterOptionRow = ({ option, selected, onSelect }: FilterOptionRowProps) => {
+  const handleChange = () => {
+    onSelect(option);
+  };
 
-  optionRow: {
-    display: "flex",
-    alignItems: "center",
-    gap: 1,
-    height: 24,
-  },
+  return (
+    <Box sx={styles.optionRow}>
+      <Checkbox checked={selected} onChange={handleChange} />
+      <Typography variant="body1">{option}</Typography>
+    </Box>
+  );
 };
 
-const FilterDropdown = ({
-  status,
-  setStatus,
-  adjudication,
-  setAdjudication,
-}: FilterDropdownProps) => {
-  const handleStatusChange = (option: string) => {
-    setStatus(option);
-  };
-
-  const handleAdjudicationChange = (option: string) => {
-    setAdjudication(option);
-  };
-
+const FilterDropdown = ({ status, setStatus, adjudication, setAdjudication }: FilterDropdownProps) => {
   return (
     <Paper sx={styles.root}>
       <Typography variant="h6">Filters</Typography>
 
-      <Divider sx={{ my: 2 }} />
+      <Divider sx={styles.divider} />
 
       <Typography variant="body1" sx={styles.sectionLabel}>
         Status
@@ -64,18 +48,11 @@ const FilterDropdown = ({
 
       <Stack spacing={1}>
         {STATUS_OPTIONS.map((option) => (
-          <Box key={option} sx={styles.optionRow}>
-            <Checkbox
-              checked={status === option}
-              onChange={() => handleStatusChange(option)}
-            />
-
-            <Typography variant="body1">{option}</Typography>
-          </Box>
+          <FilterOptionRow key={option} option={option} selected={status === option} onSelect={setStatus} />
         ))}
       </Stack>
 
-      <Divider sx={{ my: 2 }} />
+      <Divider sx={styles.divider} />
 
       <Typography variant="body1" sx={styles.sectionLabel}>
         Adjudication
@@ -83,14 +60,12 @@ const FilterDropdown = ({
 
       <Stack spacing={1}>
         {ADJUDICATION_OPTIONS.map((option) => (
-          <Box key={option} sx={styles.optionRow}>
-            <Checkbox
-              checked={adjudication === option}
-              onChange={() => handleAdjudicationChange(option)}
-            />
-
-            <Typography variant="body1">{option}</Typography>
-          </Box>
+          <FilterOptionRow
+            key={option}
+            option={option}
+            selected={adjudication === option}
+            onSelect={setAdjudication}
+          />
         ))}
       </Stack>
     </Paper>

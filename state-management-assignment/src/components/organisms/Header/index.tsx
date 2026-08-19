@@ -1,48 +1,30 @@
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import type { SxProps, Theme } from "@mui/material/styles";
 
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import AddIcon from "@mui/icons-material/Add";
 
 import Button from "../../atoms/Button";
 import Typography from "../../atoms/Typography";
+import styles from "./styles";
 
-const styles: Record<string, SxProps<Theme>> = {
-  root: {
-    mb: 3,
-  },
-
-  buttons: {
-    alignItems: "center",
-  },
-};
+import { HEADER_TITLE, HEADER_EXPORT_LABEL, HEADER_MANUAL_ORDER_LABEL } from "../../../utils/constants";
 
 const Header = () => {
   return (
     <Box sx={styles.root}>
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Typography variant="h1">
-          Candidates
-        </Typography>
+      <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Typography variant="h1">{HEADER_TITLE}</Typography>
 
-        <Stack
-          direction="row"
-          spacing={2}
-          sx={styles.buttons}
-        >
+        <Stack direction="row" spacing={2} sx={styles.buttons}>
           <Button variant="outlined">
-            <FileDownloadOutlinedIcon sx={{ mr: 1 }} />
-            Export
+            <FileDownloadOutlinedIcon sx={styles.buttonIcon} />
+            {HEADER_EXPORT_LABEL}
           </Button>
 
           <Button>
-            <AddIcon sx={{ mr: 1 }} />
-            Manual Order
+            <AddIcon sx={styles.buttonIcon} />
+            {HEADER_MANUAL_ORDER_LABEL}
           </Button>
         </Stack>
       </Stack>

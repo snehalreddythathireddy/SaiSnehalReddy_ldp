@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
-import type { SxProps, Theme } from "@mui/material/styles";
 
 import Header from "../../components/organisms/Header";
 import Sidebar from "../../components/organisms/Sidebar";
@@ -11,69 +10,33 @@ import SearchBar from "../../components/molecules/SearchBar";
 import FilterDropdown from "../../components/molecules/FilterDropdown";
 
 import Typography from "../../components/atoms/Typography";
+import styles from "./styles";
 
-import { candidates } from "../../mock/candidates";
-import type { Candidate } from "../../mock/candidates";
-
-const styles: Record<string, SxProps<Theme>> = {
-  page: {
-    display: "flex",
-    minHeight: "100vh",
-    bgcolor: "background.default",
-  },
-
-  content: {
-    flex: 1,
-    p: 4,
-  },
-
-  card: {
-    mt: 3,
-    bgcolor: "background.paper",
-    borderRadius: 2,
-    p: 3,
-    position: "relative",
-  },
-
-  cardHeader: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    mb: 3,
-  },
-
-  filter: {
-    position: "absolute",
-    top: 90,
-    right: 20,
-    zIndex: 10,
-  },
-};
+import { candidates } from "../../mocks/candidates";
+import type { Candidate } from "../../types/candidate";
+import { CANDIDATES_PAGE_CARD_TITLE } from "../../utils/constants";
 
 const Candidates = () => {
   const [search, setSearch] = useState<string>("");
-
   const [showFilter, setShowFilter] = useState<boolean>(false);
-
   const [status, setStatus] = useState<string>("All Status");
-
   const [adjudication, setAdjudication] = useState<string>("All");
-
-  const [candidateList, setCandidateList] =
-    useState<Candidate[]>(candidates);
+  const [candidateList, setCandidateList] = useState<Candidate[]>(candidates);
 
   useEffect(() => {
     if (status === "All Status") {
       setCandidateList(candidates);
     } else {
       const filtered = candidates.filter(
-        (candidate) =>
-          candidate.status.toLowerCase() === status.toLowerCase()
+        (candidate) => candidate.status.toLowerCase() === status.toLowerCase()
       );
-
       setCandidateList(filtered);
     }
   }, [status]);
+
+  const handleToggleFilter = () => {
+    setShowFilter((prev) => !prev);
+  };
 
   return (
     <Box sx={styles.page}>
@@ -84,17 +47,9 @@ const Candidates = () => {
 
         <Box sx={styles.card}>
           <Box sx={styles.cardHeader}>
-            <Typography variant="h6">
-              Candidate Information
-            </Typography>
+            <Typography variant="h6">{CANDIDATES_PAGE_CARD_TITLE}</Typography>
 
-            <SearchBar
-              search={search}
-              onSearchChange={setSearch}
-              onFilterClick={() =>
-                setShowFilter(!showFilter)
-              }
-            />
+            <SearchBar search={search} onSearchChange={setSearch} onFilterClick={handleToggleFilter} />
           </Box>
 
           {showFilter && (
@@ -109,7 +64,6 @@ const Candidates = () => {
           )}
 
           <CandidateTable candidates={candidateList} />
-
           <Pagination />
         </Box>
       </Box>
