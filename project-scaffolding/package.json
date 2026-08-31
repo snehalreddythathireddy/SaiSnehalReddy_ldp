@@ -1,0 +1,46 @@
+{
+  "name": "project-scaffolding",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^9.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@babel/preset-react": "^8.0.1",
+    "@babel/preset-typescript": "^8.0.1",
+    "@storybook/addon-a11y": "^10.5.6",
+    "@storybook/addon-docs": "^10.5.6",
+    "@storybook/addon-webpack5-compiler-swc": "^4.0.3",
+    "@storybook/react-webpack5": "^10.5.6",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "babel-loader": "^10.1.1",
+    "css-loader": "^7.1.4",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.6.8",
+    "storybook": "^10.5.6",
+    "style-loader": "^4.0.0",
+    "typescript": "^5.9.2",
+    "webpack": "^5.109.2",
+    "webpack-cli": "^7.2.2",
+    "webpack-dev-server": "^6.0.0"
+  }
+}
