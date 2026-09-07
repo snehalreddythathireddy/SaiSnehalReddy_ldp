@@ -1,0 +1,7 @@
+SELECT *
+FROM employee
+ORDER BY salary DESC
+LIMIT 2;
+SELECT *
+FROM employee
+LIMIT 2 OFFSET 1;
