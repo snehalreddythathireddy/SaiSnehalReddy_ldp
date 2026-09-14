@@ -1,25 +1,35 @@
+import type { CSSProperties } from "react";
+import type { SxProps, Theme } from "@mui/material/styles";
+
 import Typography from "../../atoms/Typography";
 import TextField from "../../atoms/TextField";
 import Checkbox from "../../atoms/Checkbox";
 import Button from "../../atoms/Button";
 import Icon from "../../atoms/Icon";
 
-import GoogleIcon from "../../../assets/icons/GoogleIcon";
-import GithubIcon from "../../../assets/icons/GithubIcon";
+import github from "../../../assets/icons/github.svg";
+import google from "../../../assets/icons/google.svg";
 
-import theme from "../../../theme/theme";
+import { SIGNIN_CONSTANTS } from "../../../utils/constants";
 
-const styles = {
+const styles: Record<string, CSSProperties> = {
   card: {
     width: theme.layout.cardWidth,
     minHeight: theme.layout.cardHeight,
     margin: "40px auto",
-    padding: theme.spacing.xl,
-    background: theme.colors.white,
-    border: `1px solid ${theme.colors.border}`,
-    borderRadius: theme.radius.sm,
-    boxShadow: theme.shadow.card,
-    boxSizing: "border-box" as const,
+    padding: "32px",
+    borderRadius: "12px",
+    border: "1px solid #E5E5E5",
+    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+    backgroundColor: "#FFFFFF",
+  },
+
+  fields: {
+    marginTop: "20px",
+  },
+
+  textFieldWrapper: {
+    marginBottom: "16px",
   },
 
   heading: {
@@ -47,47 +57,22 @@ const styles = {
     margin: "20px 0",
   },
 
-  dividerLine: {
-    flex: 1,
-    height: "1px",
-    backgroundColor: theme.colors.border,
-  },
-
-  dividerText: {
-    margin: "0 12px",
+  divider: {
+    textAlign: "center",
+    margin: "16px 0",
+    color: "#999",
+    fontSize: "14px",
   },
 
   socialButtons: {
     display: "flex",
-    flexDirection: "column" as const,
-    gap: theme.spacing.sm,
-    textTransform: theme.typography.button.textTransform,
+    flexDirection: "column",
+    gap: "10px",
   },
 
-  socialButton: {
-    width: "100%",
-    height: theme.layout.buttonHeight,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: "12px",
-    border: `1px solid ${theme.colors.border}`,
-    borderRadius: theme.radius.xs,
-    background: theme.colors.white,
-    cursor: "pointer",
-    fontFamily: theme.typography.body.fontFamily,
-    fontSize: theme.typography.body.fontSize,
-    fontWeight: theme.typography.body.fontWeight,
-    lineHeight: theme.typography.body.lineHeight,
-    color: theme.colors.textPrimary,
-    textTransform: theme.typography.button.textTransform,
-  },
-
-  footer: {
-    display: "flex",
-    justifyContent: "center",
-    gap: theme.spacing.xs,
-    marginTop: theme.spacing.md,
+  typographyHeading: {
+    color: "#111827",
+    margin: 0,
   },
 
   buttonBase: {
@@ -150,51 +135,23 @@ const styles = {
     gap: theme.spacing.xs,
   },
 
-  textFieldLabel: {
-    fontFamily: theme.typography.label.fontFamily,
-    fontSize: theme.typography.label.fontSize,
-    fontWeight: theme.typography.label.fontWeight,
-    lineHeight: theme.typography.label.lineHeight,
-    color: theme.colors.textSecondary,
-  },
+const signInButtonSx: SxProps<Theme> = {
+  borderRadius: 1.5,
+  textTransform: "none",
+  py: 1.3,
+};
 
-  textFieldSx: {
-    "& .MuiOutlinedInput-root": {
-      height: theme.layout.inputHeight,
-      borderRadius: theme.radius.xs,
-      "& fieldset": {
-        borderColor: theme.colors.border,
-      },
-      "&:hover fieldset": {
-        borderColor: theme.colors.border,
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: theme.colors.primary,
-      },
-    },
-    "& .MuiInputBase-input": {
-      padding: "8px 12px",
-      fontFamily: theme.typography.input.fontFamily,
-      fontSize: theme.typography.input.fontSize,
-      fontWeight: theme.typography.input.fontWeight,
-      lineHeight: theme.typography.input.lineHeight,
-      color: theme.colors.textPrimary,
-    },
-    "& .MuiInputBase-input::placeholder": {
-      color: theme.colors.textSecondary,
-      opacity: 1,
-    },
-  },
+const socialButtonSx: SxProps<Theme> = {
+  borderRadius: 1.5,
+  textTransform: "none",
+  py: 1.2,
+  justifyContent: "center",
+};
 
-  typographyH1: {
-    margin: 0,
-    fontFamily: theme.typography.h1.fontFamily,
-    fontSize: theme.typography.h1.fontSize,
-    fontWeight: theme.typography.h1.fontWeight,
-    lineHeight: theme.typography.h1.lineHeight,
-    letterSpacing: theme.typography.h1.letterSpacing,
-    color: theme.colors.textPrimary,
-  },
+const SignInCard = () => {
+  const handleSignIn = () => {
+    console.log("Sign in clicked");
+  };
 
   typographyBody: {
     margin: 0,
@@ -277,46 +234,53 @@ const SignInCard = () => {
         />
       </div>
 
+      <Button
+        onClick={handleSignIn}
+        disabled
+        fullWidth
+        sx={signInButtonSx}
+      >
+        {SIGNIN_CONSTANTS.SIGN_IN}
+      </Button>
+
       <div style={styles.divider}>
-        <div style={styles.dividerLine}></div>
-
-        <div style={styles.dividerText}>
-          <Typography
-            text="or"
-            variant="body"
-            style={styles.typographyBody}
-          />
-        </div>
-
-        <div style={styles.dividerLine}></div>
+        {SIGNIN_CONSTANTS.DIVIDER}
       </div>
 
       <div style={styles.socialButtons}>
         <Button
-          label="Sign in with Google"
-          variant="secondary"
+          onClick={handleGoogleSignIn}
+          variant="outlined"
+          fullWidth
           startIcon={
             <Icon
-              icon={GoogleIcon}
-              width={18}
-              height={18}
+              src={google}
+              alt={SIGNIN_CONSTANTS.GOOGLE_ALT}
+              width={20}
+              height={20}
             />
           }
-          sx={styles.socialButton}
-        />
+          sx={socialButtonSx}
+        >
+          {SIGNIN_CONSTANTS.GOOGLE_SIGN_IN}
+        </Button>
 
         <Button
-          label="Sign in with GitHub"
-          variant="secondary"
+          onClick={handleGitHubSignIn}
+          variant="outlined"
+          fullWidth
           startIcon={
             <Icon
-              icon={GithubIcon}
-              width={18}
-              height={18}
+              src={github}
+              alt={SIGNIN_CONSTANTS.GITHUB_ALT}
+              width={20}
+              height={20}
             />
           }
-          sx={styles.socialButton}
-        />
+          sx={socialButtonSx}
+        >
+          {SIGNIN_CONSTANTS.GITHUB_SIGN_IN}
+        </Button>
       </div>
 
       <div style={styles.footer}>

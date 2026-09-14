@@ -1,39 +1,40 @@
 import MuiButton from "@mui/material/Button";
 import type { ReactNode } from "react";
+import type { ButtonProps as MuiButtonProps } from "@mui/material/Button";
 import type { SxProps, Theme } from "@mui/material/styles";
 
 interface ButtonProps {
-  label: string;
-  variant?: "primary" | "secondary";
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean;
-  fullWidth?: boolean;
+  children: ReactNode;
   onClick?: () => void;
-  sx?: SxProps<Theme>;
+  variant?: "contained" | "outlined" | "text";
+  color?: MuiButtonProps["color"];
+  fullWidth?: boolean;
+  disabled?: boolean;
   startIcon?: ReactNode;
+  sx?: SxProps<Theme>;
 }
 
 const Button = ({
-  label,
-  variant = "primary",
-  type = "button",
-  disabled = false,
-  fullWidth = true,
+  children,
   onClick,
-  sx,
+  variant = "contained",
+  color = "primary",
+  fullWidth = false,
+  disabled = false,
   startIcon,
+  sx,
 }: ButtonProps) => {
   return (
     <MuiButton
-      type={type}
-      variant={variant === "primary" ? "contained" : "outlined"}
-      disabled={disabled}
-      fullWidth={fullWidth}
+      variant={variant}
+      color={color}
       onClick={onClick}
+      fullWidth={fullWidth}
+      disabled={disabled}
       startIcon={startIcon}
       sx={sx}
     >
-      {label}
+      {children}
     </MuiButton>
   );
 };
