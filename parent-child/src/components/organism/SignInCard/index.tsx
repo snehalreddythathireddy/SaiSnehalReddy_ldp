@@ -14,7 +14,8 @@ import { SIGNIN_CONSTANTS } from "../../../utils/constants";
 
 const styles: Record<string, CSSProperties> = {
   card: {
-    maxWidth: "380px",
+    width: theme.layout.cardWidth,
+    minHeight: theme.layout.cardHeight,
     margin: "40px auto",
     padding: "32px",
     borderRadius: "12px",
@@ -31,34 +32,29 @@ const styles: Record<string, CSSProperties> = {
     marginBottom: "16px",
   },
 
-  textFieldLabel: {
-    display: "block",
-    marginBottom: "4px",
-    color: "#111827",
+  heading: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.lg,
   },
 
-  textFieldInput: {
-    width: "100%",
-    padding: "10px",
-    border: "1px solid #E5E7EB",
-    borderRadius: "6px",
-    color: "#111827",
-    outline: "none",
+  form: {
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: theme.layout.formGap,
   },
 
-  row: {
+  rememberRow: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "20px",
-    fontSize: "14px",
   },
 
-  checkboxLabel: {
+  divider: {
     display: "flex",
     alignItems: "center",
-    gap: "6px",
-    fontSize: "14px",
+    margin: "20px 0",
   },
 
   divider: {
@@ -79,26 +75,65 @@ const styles: Record<string, CSSProperties> = {
     margin: 0,
   },
 
-  typographyBody: {
-    color: "#9CA3AF",
-    margin: "4px 0 0 0",
+  buttonBase: {
+    height: theme.layout.buttonHeight,
+    borderRadius: theme.radius.xs,
+    textTransform: "none" as const,
+    boxShadow: "none",
+    fontFamily: theme.typography.button.fontFamily,
+    fontSize: theme.typography.button.fontSize,
+    fontWeight: theme.typography.button.fontWeight,
+    lineHeight: theme.typography.button.lineHeight,
+    letterSpacing: theme.typography.button.letterSpacing,
+    "&:hover": {
+      boxShadow: "none",
+    },
   },
 
-  typographyLink: {
-    color: "#6366F1",
-    textDecoration: "none",
-    fontWeight: 500,
-    fontSize: "14px",
+  buttonPrimary: {
+    backgroundColor: theme.colors.primary,
+    color: theme.colors.white,
+    "&:hover": {
+      backgroundColor: theme.colors.primary,
+    },
+    "&.Mui-disabled": {
+      backgroundColor: theme.colors.primaryDisabled,
+      color: theme.colors.white,
+    },
   },
 
-  footer: {
+  checkboxSx: {
+    padding: 0,
+    "& .MuiSvgIcon-root": {
+      fontSize: 18,
+    },
+    color: theme.colors.border,
+    "&.Mui-checked": {
+      color: theme.colors.primary,
+    },
+    "&.Mui-disabled": {
+      color: theme.colors.primaryDisabled,
+    },
+  },
+
+  checkboxFormControlSx: {
+    margin: 0,
+    "& .MuiFormControlLabel-label": {
+      marginLeft: theme.spacing.sm,
+      fontFamily: theme.typography.body.fontFamily,
+      fontSize: theme.typography.body.fontSize,
+      fontWeight: theme.typography.body.fontWeight,
+      lineHeight: theme.typography.body.lineHeight,
+      letterSpacing: theme.typography.body.letterSpacing,
+      color: theme.colors.textSecondary,
+    },
+  },
+
+  textFieldContainer: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "4px",
-    marginTop: "16px",
+    flexDirection: "column" as const,
+    gap: theme.spacing.xs,
   },
-};
 
 const signInButtonSx: SxProps<Theme> = {
   borderRadius: 1.5,
@@ -118,58 +153,84 @@ const SignInCard = () => {
     console.log("Sign in clicked");
   };
 
-  const handleGoogleSignIn = () => {
-    console.log("Google sign in");
-  };
+  typographyBody: {
+    margin: 0,
+    fontFamily: theme.typography.body.fontFamily,
+    fontSize: theme.typography.body.fontSize,
+    fontWeight: theme.typography.body.fontWeight,
+    lineHeight: theme.typography.body.lineHeight,
+    letterSpacing: theme.typography.body.letterSpacing,
+    color: theme.colors.textSecondary,
+  },
 
-  const handleGitHubSignIn = () => {
-    console.log("GitHub sign in");
-  };
+  typographyLink: {
+    margin: 0,
+    fontFamily: theme.typography.link.fontFamily,
+    fontSize: theme.typography.link.fontSize,
+    fontWeight: theme.typography.link.fontWeight,
+    lineHeight: theme.typography.link.lineHeight,
+    letterSpacing: theme.typography.link.letterSpacing,
+    color: theme.colors.primary,
+    textDecoration: "none",
+    cursor: "pointer",
+  },
+};
 
+const SignInCard = () => {
   return (
     <div style={styles.card}>
-      <Typography
-        text={SIGNIN_CONSTANTS.TITLE}
-        variant="heading"
-        style={styles.typographyHeading}
-      />
-
-      <Typography
-        text={SIGNIN_CONSTANTS.SUBTITLE}
-        variant="body"
-        style={styles.typographyBody}
-      />
-
-      <div style={styles.fields}>
-        <TextField
-          label={SIGNIN_CONSTANTS.EMAIL_LABEL}
-          type="email"
-          placeholder={SIGNIN_CONSTANTS.EMAIL_PLACEHOLDER}
-          wrapperStyle={styles.textFieldWrapper}
-          labelStyle={styles.textFieldLabel}
-          inputStyle={styles.textFieldInput}
-        />
-
-        <TextField
-          label={SIGNIN_CONSTANTS.PASSWORD_LABEL}
-          type="password"
-          placeholder={SIGNIN_CONSTANTS.PASSWORD_PLACEHOLDER}
-          wrapperStyle={styles.textFieldWrapper}
-          labelStyle={styles.textFieldLabel}
-          inputStyle={styles.textFieldInput}
-        />
-      </div>
-
-      <div style={styles.row}>
-        <Checkbox
-          label={SIGNIN_CONSTANTS.REMEMBER_ME}
-          style={styles.checkboxLabel}
+      <div style={styles.heading}>
+        <Typography
+          text="Sign In"
+          variant="h1"
+          style={styles.typographyH1}
         />
 
         <Typography
-          text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
-          variant="link"
-          style={styles.typographyLink}
+          text="Please enter your login credentials"
+          variant="body"
+          style={styles.typographyBody}
+        />
+      </div>
+
+      <div style={styles.form}>
+        <TextField
+          label="Email"
+          type="email"
+          placeholder="rhernandez@gmail.com"
+          containerStyle={styles.textFieldContainer}
+          labelStyle={styles.textFieldLabel}
+          textFieldSx={styles.textFieldSx}
+        />
+
+        <TextField
+          label="Password"
+          type="password"
+          placeholder="********"
+          containerStyle={styles.textFieldContainer}
+          labelStyle={styles.textFieldLabel}
+          textFieldSx={styles.textFieldSx}
+        />
+
+        <div style={styles.rememberRow}>
+          <Checkbox
+            label="Remember me"
+            checkboxSx={styles.checkboxSx}
+            formControlSx={styles.checkboxFormControlSx}
+          />
+
+          <Typography
+            text="Forgot password?"
+            variant="link"
+            style={styles.typographyLink}
+          />
+        </div>
+
+        <Button
+          label="Sign In"
+          type="submit"
+          sx={{ ...styles.buttonBase, ...styles.buttonPrimary }}
+      
         />
       </div>
 
@@ -224,13 +285,13 @@ const SignInCard = () => {
 
       <div style={styles.footer}>
         <Typography
-          text={SIGNIN_CONSTANTS.NO_ACCOUNT}
+          text="Don't have an account?"
           variant="body"
           style={styles.typographyBody}
         />
 
         <Typography
-          text={SIGNIN_CONSTANTS.SIGN_UP}
+          text="Sign up"
           variant="link"
           style={styles.typographyLink}
         />
