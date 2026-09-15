@@ -4,7 +4,7 @@ import Typography from "../../atoms/Typography";
 
 import DashboardLayout from "../../templates/DashboardLayout";
 import Sidebar from "../../organisms/Sidebar";
-import Header from "../../organisms/Header";
+import Header from "../../molecules/Header";
 import ContractsTable from "../../organisms/ContractsTable";
 import SummaryCard from "../../organisms/SummaryCard";
 import { getContracts, getCurrentUser } from "../../../services";
@@ -15,17 +15,17 @@ import {
   NEW_CASH_KICK_PAGE_TITLE,
   NEW_CASH_KICK_PAGE_SUBTITLE,
   NEW_CASH_KICK_PAGE_REVIEW_ALERT_PREFIX,
-  NEW_CASH_KICK_PAGE_LOADING_LABEL,
-  NEW_CASH_KICK_PAGE_ERROR_LABEL,
+  NEW_CASH_KICK_TERM_MONTHS,
+  NEW_CASH_KICK_RATE,
+  WATCH_HOW_TO_URL,
+  WATCH_HOW_TO_TARGET,
+  NAV_HOME,
+  NAV_CASH,
 } from "../../../utils/constants";
 
 const NewCashKickPage = () => {
-  const [nav, setNav] = useState<"home" | "cash">("cash");
-  const [contracts, setContracts] = useState<Contract[]>([]);
-  const [currentUser, setCurrentUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [nav, setNav] = useState<typeof NAV_HOME | typeof NAV_CASH>(NAV_CASH);
+  const [selectedIds, setSelectedIds] = useState<number[]>([1, 5]);
   const [sliderValue, setSliderValue] = useState(0);
 
   useEffect(() => {
@@ -98,11 +98,10 @@ const NewCashKickPage = () => {
   }, []);
 
   const handleBack = useCallback(() => {
-    // No-op: this page has no previous step to navigate back to yet.
   }, []);
 
   const handleWatchHowTo = useCallback(() => {
-    window.open("#", "_blank");
+    window.open(WATCH_HOW_TO_URL, WATCH_HOW_TO_TARGET);
   }, []);
 
   const handleReview = useCallback(() => {
@@ -144,14 +143,14 @@ const NewCashKickPage = () => {
           onToggleAll={handleToggleAll}
         />
         <SummaryCard
-          term={12}
+          term={NEW_CASH_KICK_TERM_MONTHS}
           selectedCount={selectedIds.length}
           sliderValue={sliderValue}
           onSliderChange={handleSliderChange}
           onReset={handleReset}
           selectedSum={selectedSum}
           totalAvailable={totalAvailable}
-          rate={12}
+          rate={NEW_CASH_KICK_RATE}
           onReview={handleReview}
         />
       </Stack>

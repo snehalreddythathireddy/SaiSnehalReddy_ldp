@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 
 import Icon from "../../atoms/Icon";
 import Typography from "../../atoms/Typography";
-import UserProfile from "../../molecules/UserProfile";
+import UserProfile from "../../organisms/UserProfile";
 import styles from "./styles";
 import { HEADER_BACK_LABEL } from "../../../utils/constants";
 import arrowLeftIcon from "../../../assets/icons/arrow-left.svg";

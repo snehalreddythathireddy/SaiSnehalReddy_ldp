@@ -10,24 +10,26 @@ import {
   SIDEBAR_HOME_LABEL,
   SIDEBAR_CASH_LABEL,
   SIDEBAR_WATCH_HOW_TO_LABEL,
+  NAV_HOME,
+  NAV_CASH,
 } from "../../../utils/constants";
 import groupIcon from "../../../assets/icons/Group.svg";
 import homeIcon from "../../../assets/icons/home-2.svg";
 import coinIcon from "../../../assets/icons/coin.svg";
 
 interface SidebarProps {
-  active: "home" | "cash";
-  onNavigate: (page: "home" | "cash") => void;
+  active: typeof NAV_HOME | typeof NAV_CASH;
+  onNavigate: (page: typeof NAV_HOME | typeof NAV_CASH) => void;
   onWatchHowTo?: () => void;
 }
 
 const Sidebar = ({ active, onNavigate, onWatchHowTo }: SidebarProps) => {
   const handleNavigateHome = () => {
-    onNavigate("home");
+    onNavigate(NAV_HOME);
   };
 
   const handleNavigateCash = () => {
-    onNavigate("cash");
+    onNavigate(NAV_CASH);
   };
 
   return (
@@ -41,18 +43,17 @@ const Sidebar = ({ active, onNavigate, onWatchHowTo }: SidebarProps) => {
         <IconText
           icon={homeIcon}
           label={SIDEBAR_HOME_LABEL}
-          active={active === "home"}
+          active={active === NAV_HOME}
           onClick={handleNavigateHome}
         />
         <IconText
           icon={coinIcon}
           label={SIDEBAR_CASH_LABEL}
-          active={active === "cash"}
+          active={active === NAV_CASH}
           onClick={handleNavigateCash}
         />
       </Stack>
 
-      {/* Bottom-left footer link, per the Figma frame */}
       <Box sx={styles.footer}>
         <Typography
           variant="body2"

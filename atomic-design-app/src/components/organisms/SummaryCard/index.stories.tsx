@@ -27,7 +27,7 @@ export const Empty: Story = {
 export const Interactive: Story = {
   render: () => {
     const total = 401458.33;
-    const [value, setValue] = useState(47);
+    const [value, setValue] = useState<number>(47);
     const selectedSum = (value / 100) * total;
     return (
       <SummaryCard
