@@ -2,8 +2,8 @@ import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import NewCashKickPage from "./index";
-import { getContracts } from "../../../api/contracts";
-import { getCurrentUser } from "../../../api/user";
+import { getContracts, getCurrentUser } from "../../../services";
+
 import {
   SUMMARY_CARD_REVIEW_BUTTON_LABEL,
   SUMMARY_CARD_TOTAL_PAYOUT_LABEL,
@@ -13,8 +13,7 @@ import {
 import type { Contract } from "../../../types/contract";
 import type { User } from "../../../types/user";
 
-jest.mock("../../../api/contracts");
-jest.mock("../../../api/user");
+jest.mock("../../../services");
 
 const mockGetContracts = getContracts as jest.MockedFunction<typeof getContracts>;
 const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>;
