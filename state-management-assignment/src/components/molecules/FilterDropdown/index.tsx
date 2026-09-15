@@ -7,8 +7,7 @@ import Checkbox from "../../atoms/Checkbox";
 import Typography from "../../atoms/Typography";
 import styles from "./styles";
 
-import { STATUS_OPTIONS, ADJUDICATION_OPTIONS } from "../../../utils/constants";
-
+import { STATUS_OPTIONS, ADJUDICATION_OPTIONS, STATUS_LABEL, ADJUDICATION_LABEL } from "../../../utils/constants";
 interface FilterDropdownProps {
   status: string;
   setStatus: (value: string) => void;

@@ -44,3 +44,5 @@ export const TABLE_HEADERS = ["NAME", "ADJUDICATION", "STATUS", "LOCATION", "DAT
 
 // Candidates page
 export const CANDIDATES_PAGE_CARD_TITLE = "Candidate Information";
+export const STATUS_LABEL = "Status";
+export const ADJUDICATION_LABEL = "Adjudication";
