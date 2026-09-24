@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local & Session Storage Counter</title>
+</head>
+<body>
+
+    <h2>Storage Counter</h2>
+    <h3>Local Score: <span id="localScore">0</span></h3>
+    <h3>Session Score: <span id="sessionScore">0</span></h3>
+    <button onclick="increment()">Increment</button>
+
+    <script>
+        let localCount = Number(localStorage.getItem("localScore")) || 0;
+        let sessionCount = Number(sessionStorage.getItem("sessionScore")) || 0;
+        document.getElementById("localScore").innerText = localCount;
+        document.getElementById("sessionScore").innerText = sessionCount;
+
+        const increment=()=> {
+            localCount++;
+            sessionCount++;
+            localStorage.setItem("localScore", localCount);
+            sessionStorage.setItem("sessionScore", sessionCount);
+            document.getElementById("localScore").innerText = localCount;
+            document.getElementById("sessionScore").innerText = sessionCount;
+        }
+    </script>
+
+</body>
+</html>

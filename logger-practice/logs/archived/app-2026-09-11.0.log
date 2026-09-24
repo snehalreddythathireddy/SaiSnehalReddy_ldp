@@ -1,0 +1,61 @@
+2026-09-11T10:22:26.453+05:30  INFO 6666 --- [logger-practice] [main] c.e.l.LoggerPracticeApplication          : Starting LoggerPracticeApplication using Java 21.0.12.1 with PID 6666 (/Users/snehal/Downloads/logger-practice/target/classes started by snehal in /Users/snehal/Downloads/logger-practice)
+2026-09-11T10:22:26.458+05:30 DEBUG 6666 --- [logger-practice] [main] c.e.l.LoggerPracticeApplication          : Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-11T10:22:26.459+05:30  INFO 6666 --- [logger-practice] [main] c.e.l.LoggerPracticeApplication          : No active profile set, falling back to 1 default profile: "default"
+2026-09-11T10:22:27.444+05:30  INFO 6666 --- [logger-practice] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-09-11T10:22:27.460+05:30  INFO 6666 --- [logger-practice] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-11T10:22:27.460+05:30  INFO 6666 --- [logger-practice] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-11T10:22:27.499+05:30  INFO 6666 --- [logger-practice] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 958 ms
+2026-09-11T10:22:27.893+05:30  INFO 6666 --- [logger-practice] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-09-11T10:22:27.901+05:30  INFO 6666 --- [logger-practice] [main] c.e.l.LoggerPracticeApplication          : Started LoggerPracticeApplication in 2.147 seconds (process running for 3.625)
+2026-09-11T13:28:55.818+05:30  INFO 6666 --- [logger-practice] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-11T13:28:55.827+05:30  INFO 6666 --- [logger-practice] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-09-11 13:29:04,125 INFO o.s.b.StartupInfoLogger [main] Starting LoggerPracticeApplication using Java 21.0.12.1 with PID 8251 (/Users/snehal/Downloads/logger-practice/target/classes started by snehal in /Users/snehal/Downloads/logger-practice)
+2026-09-11 13:29:04,134 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-11 13:29:04,135 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-09-11 13:29:05,127 INFO o.s.b.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-09-11 13:29:05,142 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:29:05,147 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-09-11 13:29:05,147 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-11 13:29:05,195 INFO o.s.b.w.c.s.WebApplicationContextInitializer [main] Root WebApplicationContext: initialization completed in 912 ms
+2026-09-11 13:29:05,660 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:29:05,680 INFO o.s.b.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-09-11 13:29:05,686 INFO o.s.b.StartupInfoLogger [main] Started LoggerPracticeApplication in 2.533 seconds (process running for 4.195)
+2026-09-11 13:30:16,897 INFO o.s.b.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-11 13:30:16,906 INFO o.s.b.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-09-11 13:30:20,248 INFO o.s.b.StartupInfoLogger [main] Starting LoggerPracticeApplication using Java 21.0.12.1 with PID 8267 (/Users/snehal/Downloads/logger-practice/target/classes started by snehal in /Users/snehal/Downloads/logger-practice)
+2026-09-11 13:30:20,255 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-11 13:30:20,257 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-09-11 13:30:21,234 INFO o.s.b.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-09-11 13:30:21,251 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:30:21,254 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-09-11 13:30:21,255 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-11 13:30:21,296 INFO o.s.b.w.c.s.WebApplicationContextInitializer [main] Root WebApplicationContext: initialization completed in 959 ms
+2026-09-11 13:30:21,734 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:30:21,756 INFO o.s.b.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-09-11 13:30:21,763 INFO o.s.b.StartupInfoLogger [main] Started LoggerPracticeApplication in 2.329 seconds (process running for 3.913)
+2026-09-11 13:31:07,366 INFO o.s.b.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-11 13:31:07,375 INFO o.s.b.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-09-11 13:31:11,329 INFO o.s.b.StartupInfoLogger [main] Starting LoggerPracticeApplication using Java 21.0.12.1 with PID 8280 (/Users/snehal/Downloads/logger-practice/target/classes started by snehal in /Users/snehal/Downloads/logger-practice)
+2026-09-11 13:31:11,335 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-11 13:31:11,337 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-09-11 13:31:12,385 INFO o.s.b.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-09-11 13:31:12,402 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:31:12,404 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-09-11 13:31:12,405 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-11 13:31:12,445 INFO o.s.b.w.c.s.WebApplicationContextInitializer [main] Root WebApplicationContext: initialization completed in 1025 ms
+2026-09-11 13:31:12,941 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:31:12,975 INFO o.s.b.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-09-11 13:31:12,984 INFO o.s.b.StartupInfoLogger [main] Started LoggerPracticeApplication in 2.432 seconds (process running for 3.706)
+2026-09-11 13:34:28,529 INFO o.s.b.t.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-11 13:34:28,543 INFO o.s.b.t.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2026-09-11 13:34:34,602 INFO o.s.b.StartupInfoLogger [main] Starting LoggerPracticeApplication using Java 21.0.12.1 with PID 8310 (/Users/snehal/Downloads/logger-practice/target/classes started by snehal in /Users/snehal/Downloads/logger-practice)
+2026-09-11 13:34:34,607 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v4.1.1, Spring v7.0.9
+2026-09-11 13:34:34,608 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2026-09-11 13:34:35,528 INFO o.s.b.t.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2026-09-11 13:34:35,543 INFO o.a.j.l.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:34:35,544 INFO o.a.j.l.DirectJDKLog [main] Starting service [Tomcat]
+2026-09-11 13:34:35,544 INFO o.a.j.l.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-09-11 13:34:35,580 INFO o.s.b.w.c.s.WebApplicationContextInitializer [main] Root WebApplicationContext: initialization completed in 883 ms
+2026-09-11 13:34:35,973 INFO o.a.j.l.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2026-09-11 13:34:35,996 INFO o.s.b.t.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2026-09-11 13:34:36,003 INFO o.s.b.StartupInfoLogger [main] Started LoggerPracticeApplication in 2.164 seconds (process running for 3.66)
