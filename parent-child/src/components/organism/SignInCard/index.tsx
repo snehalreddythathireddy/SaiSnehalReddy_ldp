@@ -181,13 +181,13 @@ const SignInCard = () => {
     <div style={styles.card}>
       <div style={styles.heading}>
         <Typography
-          text="Sign In"
+          text={SIGNIN_CONSTANTS.TITLE}
           variant="h1"
           style={styles.typographyH1}
         />
 
         <Typography
-          text="Please enter your login credentials"
+          text={SIGNIN_CONSTANTS.SUBTITLE}
           variant="body"
           style={styles.typographyBody}
         />
@@ -195,18 +195,18 @@ const SignInCard = () => {
 
       <div style={styles.form}>
         <TextField
-          label="Email"
+          label={SIGNIN_CONSTANTS.EMAIL_LABEL}
           type="email"
-          placeholder="rhernandez@gmail.com"
+          placeholder={SIGNIN_CONSTANTS.EMAIL_PLACEHOLDER}
           containerStyle={styles.textFieldContainer}
           labelStyle={styles.textFieldLabel}
           textFieldSx={styles.textFieldSx}
         />
 
         <TextField
-          label="Password"
+          label={SIGNIN_CONSTANTS.PASSWORD_LABEL}
           type="password"
-          placeholder="********"
+          placeholder={SIGNIN_CONSTANTS.PASSWORD_PLACEHOLDER}
           containerStyle={styles.textFieldContainer}
           labelStyle={styles.textFieldLabel}
           textFieldSx={styles.textFieldSx}
@@ -214,20 +214,20 @@ const SignInCard = () => {
 
         <div style={styles.rememberRow}>
           <Checkbox
-            label="Remember me"
+            label={SIGNIN_CONSTANTS.REMEMBER_ME}
             checkboxSx={styles.checkboxSx}
             formControlSx={styles.checkboxFormControlSx}
           />
 
           <Typography
-            text="Forgot password?"
+            text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
             variant="link"
             style={styles.typographyLink}
           />
         </div>
 
         <Button
-          label="Sign In"
+          label={SIGNIN_CONSTANTS.SIGN_IN}
           type="submit"
           sx={{ ...styles.buttonBase, ...styles.buttonPrimary }}
       
@@ -285,13 +285,13 @@ const SignInCard = () => {
 
       <div style={styles.footer}>
         <Typography
-          text="Don't have an account?"
+          text={SIGNIN_CONSTANTS.NO_ACCOUNT}
           variant="body"
           style={styles.typographyBody}
         />
 
         <Typography
-          text="Sign up"
+          text={SIGNIN_CONSTANTS.SIGN_UP}
           variant="link"
           style={styles.typographyLink}
         />
