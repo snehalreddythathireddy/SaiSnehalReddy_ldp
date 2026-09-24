@@ -1,15 +1,29 @@
-import type { CSSProperties } from 'react';
+import type { CSSProperties } from "react";
 
 interface TypographyProps {
   text: string;
-  variant?: 'heading' | 'body' | 'link';
+  variant?: "h1" | "body" | "link" | "label";
   style?: CSSProperties;
 }
 
-const Typography = ({ text, variant = 'body', style }: TypographyProps) => {
-  if (variant === 'heading') return <h2 style={style}>{text}</h2>;
-  if (variant === 'link') return <a href="#" style={style}>{text}</a>;
-  return <p style={style}>{text}</p>;
+const Typography = ({ text, variant = "body", style }: TypographyProps) => {
+  switch (variant) {
+    case "h1":
+      return <h1 style={style}>{text}</h1>;
+
+    case "label":
+      return <label style={style}>{text}</label>;
+
+    case "link":
+      return (
+        <a href="#" style={style}>
+          {text}
+        </a>
+      );
+
+    default:
+      return <p style={style}>{text}</p>;
+  }
 };
 
 export default Typography;
