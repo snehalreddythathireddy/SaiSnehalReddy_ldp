@@ -1,4 +1,5 @@
-import type { CSSProperties } from "react";
+import { useState } from "react";
+import type { ChangeEvent, CSSProperties } from "react";
 import type { SxProps, Theme } from "@mui/material/styles";
 
 import Typography from "../../atoms/Typography";
@@ -11,180 +12,238 @@ import github from "../../../assets/icons/github.svg";
 import google from "../../../assets/icons/google.svg";
 
 import { SIGNIN_CONSTANTS } from "../../../utils/constants";
+import theme from "../../../theme/theme";
 
 const styles: Record<string, CSSProperties> = {
   card: {
-    maxWidth: "380px",
+    width: theme.layout.cardWidth,
+    minHeight: theme.layout.cardHeight,
     margin: "40px auto",
     padding: "32px",
     borderRadius: "12px",
-    border: "1px solid #E5E5E5",
-    boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-    backgroundColor: "#FFFFFF",
+    border: `1px solid ${theme.colors.border}`,
+    backgroundColor: theme.colors.white,
   },
-
-  fields: {
-    marginTop: "20px",
+  heading: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing.sm,
+    marginBottom: theme.spacing.lg,
   },
-
-  textFieldWrapper: {
-    marginBottom: "16px",
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.layout.formGap,
   },
-
-  textFieldLabel: {
-    display: "block",
-    marginBottom: "4px",
-    color: "#111827",
-  },
-
-  textFieldInput: {
-    width: "100%",
-    padding: "10px",
-    border: "1px solid #E5E7EB",
-    borderRadius: "6px",
-    color: "#111827",
-    outline: "none",
-  },
-
-  row: {
+  rememberRow: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "20px",
-    fontSize: "14px",
   },
-
-  checkboxLabel: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    fontSize: "14px",
-  },
-
   divider: {
     textAlign: "center",
     margin: "16px 0",
-    color: "#999",
+    color: theme.colors.textSecondary,
     fontSize: "14px",
   },
-
   socialButtons: {
     display: "flex",
     flexDirection: "column",
     gap: "10px",
   },
-
-  typographyHeading: {
-    color: "#111827",
-    margin: 0,
-  },
-
-  typographyBody: {
-    color: "#9CA3AF",
-    margin: "4px 0 0 0",
-  },
-
-  typographyLink: {
-    color: "#6366F1",
-    textDecoration: "none",
-    fontWeight: 500,
-    fontSize: "14px",
-  },
-
   footer: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center",
-    gap: "4px",
-    marginTop: "16px",
+    gap: theme.spacing.sm,
+    marginTop: theme.spacing.lg,
+  },
+  textFieldContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing.xs,
+  },
+  // TODO: confirm these keys exist in theme.typography (h1, label)
+  typographyH1: {
+    margin: 0,
+    fontFamily: theme.typography.h1.fontFamily,
+    fontSize: theme.typography.h1.fontSize,
+    fontWeight: theme.typography.h1.fontWeight,
+    lineHeight: theme.typography.h1.lineHeight,
+    letterSpacing: theme.typography.h1.letterSpacing,
+    color: theme.colors.textPrimary,
+  },
+  typographyBody: {
+    margin: 0,
+    fontFamily: theme.typography.body.fontFamily,
+    fontSize: theme.typography.body.fontSize,
+    fontWeight: theme.typography.body.fontWeight,
+    lineHeight: theme.typography.body.lineHeight,
+    letterSpacing: theme.typography.body.letterSpacing,
+    color: theme.colors.textSecondary,
+  },
+  typographyLink: {
+    margin: 0,
+    fontFamily: theme.typography.link.fontFamily,
+    fontSize: theme.typography.link.fontSize,
+    fontWeight: theme.typography.link.fontWeight,
+    lineHeight: theme.typography.link.lineHeight,
+    letterSpacing: theme.typography.link.letterSpacing,
+    color: theme.colors.primary,
+    textDecoration: "none",
+    cursor: "pointer",
+  },
+  textFieldLabel: {
+    fontFamily: theme.typography.label.fontFamily,
+    fontSize: theme.typography.label.fontSize,
+    fontWeight: theme.typography.label.fontWeight,
+    lineHeight: theme.typography.label.lineHeight,
+    color: theme.colors.textPrimary,
   },
 };
 
-const signInButtonSx: SxProps<Theme> = {
-  borderRadius: 1.5,
+/* ---------- MUI sx styles (passed via sx={}) ---------- */
+const buttonBaseSx = {
+  height: theme.layout.buttonHeight,
+  borderRadius: theme.radius.xs,
   textTransform: "none",
-  py: 1.3,
+  boxShadow: "none",
+  fontFamily: theme.typography.button.fontFamily,
+  fontSize: theme.typography.button.fontSize,
+  fontWeight: theme.typography.button.fontWeight,
+  lineHeight: theme.typography.button.lineHeight,
+  letterSpacing: theme.typography.button.letterSpacing,
+  "&:hover": { boxShadow: "none" },
+} as const;
+
+const primaryButtonSx: SxProps<Theme> = {
+  ...buttonBaseSx,
+  backgroundColor: theme.colors.primary,
+  color: theme.colors.white,
+  "&:hover": { backgroundColor: theme.colors.primary, boxShadow: "none" },
+  "&.Mui-disabled": {
+    backgroundColor: theme.colors.primaryDisabled,
+    color: theme.colors.white,
+  },
 };
 
 const socialButtonSx: SxProps<Theme> = {
-  borderRadius: 1.5,
-  textTransform: "none",
-  py: 1.2,
+  ...buttonBaseSx,
+  borderColor: theme.colors.border,
+  color: theme.colors.textSecondary,
   justifyContent: "center",
 };
 
+const checkboxSx: SxProps<Theme> = {
+  padding: 0,
+  "& .MuiSvgIcon-root": { fontSize: 18 },
+  color: theme.colors.border,
+  "&.Mui-checked": { color: theme.colors.primary },
+  "&.Mui-disabled": { color: theme.colors.primaryDisabled },
+};
+
+const checkboxFormControlSx: SxProps<Theme> = {
+  margin: 0,
+  "& .MuiFormControlLabel-label": {
+    marginLeft: theme.spacing.sm,
+    fontFamily: theme.typography.body.fontFamily,
+    fontSize: theme.typography.body.fontSize,
+    fontWeight: theme.typography.body.fontWeight,
+    lineHeight: theme.typography.body.lineHeight,
+    letterSpacing: theme.typography.body.letterSpacing,
+    color: theme.colors.textSecondary,
+  },
+};
+
+const textFieldSx: SxProps<Theme> = {
+  "& .MuiOutlinedInput-root": {
+    borderRadius: theme.radius.xs,
+    "& fieldset": { borderColor: theme.colors.border },
+  },
+};
+
+/* ---------- component ---------- */
 const SignInCard = () => {
-  const handleSignIn = () => {
-    console.log("Sign in clicked");
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
-  const handleGoogleSignIn = () => {
-    console.log("Google sign in");
-  };
+  const isFormEmpty = email.trim() === "" || password.trim() === "";
 
-  const handleGitHubSignIn = () => {
-    console.log("GitHub sign in");
-  };
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setEmail(e.target.value);
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setPassword(e.target.value);
+  const handleRememberChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setRememberMe(e.target.checked);
+
+  const handleSignIn = () => console.log("Sign in clicked", { email, rememberMe });
+  const handleGoogleSignIn = () => console.log("Google sign in");
+  const handleGitHubSignIn = () => console.log("GitHub sign in");
 
   return (
     <div style={styles.card}>
-      <Typography
-        text={SIGNIN_CONSTANTS.TITLE}
-        variant="heading"
-        style={styles.typographyHeading}
-      />
+      <div style={styles.heading}>
+        <Typography
+          text={SIGNIN_CONSTANTS.TITLE}
+          variant="h1"
+          style={styles.typographyH1}
+        />
+        <Typography
+          text={SIGNIN_CONSTANTS.SUBTITLE}
+          variant="body"
+          style={styles.typographyBody}
+        />
+      </div>
 
-      <Typography
-        text={SIGNIN_CONSTANTS.SUBTITLE}
-        variant="body"
-        style={styles.typographyBody}
-      />
-
-      <div style={styles.fields}>
+      <div style={styles.form}>
         <TextField
           label={SIGNIN_CONSTANTS.EMAIL_LABEL}
           type="email"
           placeholder={SIGNIN_CONSTANTS.EMAIL_PLACEHOLDER}
-          wrapperStyle={styles.textFieldWrapper}
+          value={email}
+          onChange={handleEmailChange}
+          containerStyle={styles.textFieldContainer}
           labelStyle={styles.textFieldLabel}
-          inputStyle={styles.textFieldInput}
+          textFieldSx={textFieldSx}
         />
 
         <TextField
           label={SIGNIN_CONSTANTS.PASSWORD_LABEL}
           type="password"
           placeholder={SIGNIN_CONSTANTS.PASSWORD_PLACEHOLDER}
-          wrapperStyle={styles.textFieldWrapper}
+          value={password}
+          onChange={handlePasswordChange}
+          containerStyle={styles.textFieldContainer}
           labelStyle={styles.textFieldLabel}
-          inputStyle={styles.textFieldInput}
-        />
-      </div>
-
-      <div style={styles.row}>
-        <Checkbox
-          label={SIGNIN_CONSTANTS.REMEMBER_ME}
-          style={styles.checkboxLabel}
+          textFieldSx={textFieldSx}
         />
 
-        <Typography
-          text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
-          variant="link"
-          style={styles.typographyLink}
-        />
+        <div style={styles.rememberRow}>
+          <Checkbox
+            label={SIGNIN_CONSTANTS.REMEMBER_ME}
+            checked={rememberMe}
+            onChange={handleRememberChange}
+            checkboxSx={checkboxSx}
+            formControlSx={checkboxFormControlSx}
+          />
+          <Typography
+            text={SIGNIN_CONSTANTS.FORGOT_PASSWORD}
+            variant="link"
+            style={styles.typographyLink}
+          />
+        </div>
+
+        <Button
+          onClick={handleSignIn}
+          disabled={isFormEmpty}
+          fullWidth
+          sx={primaryButtonSx}
+        >
+          {SIGNIN_CONSTANTS.SIGN_IN}
+        </Button>
       </div>
 
-      <Button
-        onClick={handleSignIn}
-        disabled
-        fullWidth
-        sx={signInButtonSx}
-      >
-        {SIGNIN_CONSTANTS.SIGN_IN}
-      </Button>
-
-      <div style={styles.divider}>
-        {SIGNIN_CONSTANTS.DIVIDER}
-      </div>
+      <div style={styles.divider}>{SIGNIN_CONSTANTS.DIVIDER}</div>
 
       <div style={styles.socialButtons}>
         <Button
@@ -228,7 +287,6 @@ const SignInCard = () => {
           variant="body"
           style={styles.typographyBody}
         />
-
         <Typography
           text={SIGNIN_CONSTANTS.SIGN_UP}
           variant="link"
