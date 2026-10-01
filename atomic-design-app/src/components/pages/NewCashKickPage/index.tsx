@@ -1,14 +1,16 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import Stack from "@mui/material/Stack";
+import Typography from "../../atoms/Typography";
 
 import DashboardLayout from "../../templates/DashboardLayout";
 import Sidebar from "../../organisms/Sidebar";
 import Header from "../../molecules/Header";
 import ContractsTable from "../../organisms/ContractsTable";
 import SummaryCard from "../../organisms/SummaryCard";
-import { CONTRACTS } from "../../../mocks/contracts";
-import { CURRENT_USER } from "../../../mocks/user";
+import { getContracts, getCurrentUser } from "../../../services";
 import styles from "./styles";
+import type { Contract } from "../../../types/contract";
+import type { User } from "../../../types/user";
 import {
   NEW_CASH_KICK_PAGE_TITLE,
   NEW_CASH_KICK_PAGE_SUBTITLE,
@@ -26,14 +28,44 @@ const NewCashKickPage = () => {
   const [selectedIds, setSelectedIds] = useState<number[]>([1, 5]);
   const [sliderValue, setSliderValue] = useState(0);
 
-  const totalAvailable = useMemo(() => CONTRACTS.reduce((sum, c) => sum + c.availableCredit, 0), []);
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadData = async () => {
+      try {
+        const [fetchedContracts, fetchedUser] = await Promise.all([getContracts(), getCurrentUser()]);
+        if (isMounted) {
+          setContracts(fetchedContracts);
+          setCurrentUser(fetchedUser);
+        }
+      } catch (error) {
+        if (isMounted) {
+          setHasError(true);
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const totalAvailable = useMemo(() => contracts.reduce((sum, c) => sum + c.availableCredit, 0), [contracts]);
   const selectedSum = useMemo(
-    () => CONTRACTS.filter((c) => selectedIds.includes(c.id)).reduce((sum, c) => sum + c.availableCredit, 0),
-    [selectedIds]
+    () => contracts.filter((c) => selectedIds.includes(c.id)).reduce((sum, c) => sum + c.availableCredit, 0),
+    [contracts, selectedIds]
   );
 
   useEffect(() => {
-    setSliderValue(Math.round((selectedSum / totalAvailable) * 100));
+    if (totalAvailable > 0) {
+      setSliderValue(Math.round((selectedSum / totalAvailable) * 100));
+    }
   }, [selectedSum, totalAvailable]);
 
   const handleToggle = useCallback((id: number) => {
@@ -41,8 +73,8 @@ const NewCashKickPage = () => {
   }, []);
 
   const handleToggleAll = useCallback(() => {
-    setSelectedIds((prev) => (prev.length === CONTRACTS.length ? [] : CONTRACTS.map((c) => c.id)));
-  }, []);
+    setSelectedIds((prev) => (prev.length === contracts.length ? [] : contracts.map((c) => c.id)));
+  }, [contracts]);
 
   const handleSliderChange = useCallback(
     (val: number) => {
@@ -50,14 +82,14 @@ const NewCashKickPage = () => {
       const target = (val / 100) * totalAvailable;
       let running = 0;
       const next: number[] = [];
-      for (const c of CONTRACTS) {
+      for (const c of contracts) {
         if (running >= target) break;
         running += c.availableCredit;
         next.push(c.id);
       }
       setSelectedIds(next);
     },
-    [totalAvailable]
+    [contracts, totalAvailable]
   );
 
   const handleReset = useCallback(() => {
@@ -76,6 +108,22 @@ const NewCashKickPage = () => {
     alert(`${NEW_CASH_KICK_PAGE_REVIEW_ALERT_PREFIX}${selectedSum.toFixed(2)}`);
   }, [selectedSum]);
 
+  if (isLoading) {
+    return (
+      <DashboardLayout sidebar={<Sidebar active={nav} onNavigate={setNav} onWatchHowTo={handleWatchHowTo} />}>
+        <Typography variant="body1">{NEW_CASH_KICK_PAGE_LOADING_LABEL}</Typography>
+      </DashboardLayout>
+    );
+  }
+
+  if (hasError || !currentUser) {
+    return (
+      <DashboardLayout sidebar={<Sidebar active={nav} onNavigate={setNav} onWatchHowTo={handleWatchHowTo} />}>
+        <Typography variant="body1">{NEW_CASH_KICK_PAGE_ERROR_LABEL}</Typography>
+      </DashboardLayout>
+    );
+  }
+
   return (
     <DashboardLayout
       sidebar={<Sidebar active={nav} onNavigate={setNav} onWatchHowTo={handleWatchHowTo} />}
@@ -84,12 +132,12 @@ const NewCashKickPage = () => {
         title={NEW_CASH_KICK_PAGE_TITLE}
         subtitle={NEW_CASH_KICK_PAGE_SUBTITLE}
         onBack={handleBack}
-        user={CURRENT_USER}
+        user={currentUser}
       />
 
       <Stack direction="row" spacing={2.5} sx={styles.content}>
         <ContractsTable
-          contracts={CONTRACTS}
+          contracts={contracts}
           selectedIds={selectedIds}
           onToggle={handleToggle}
           onToggleAll={handleToggleAll}
