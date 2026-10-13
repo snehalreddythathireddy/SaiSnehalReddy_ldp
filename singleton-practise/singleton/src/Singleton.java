@@ -16,7 +16,7 @@ public class Singleton {
         this.value = value;
     }
 
-    public static Singleton getInstance(String value) {
+    public static synchronized Singleton getInstance(String value) {
         if (instance == null) {
             instance = new Singleton(value);
         }
