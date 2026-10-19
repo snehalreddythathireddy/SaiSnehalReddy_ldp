@@ -1,7 +1,9 @@
 package com.example.order_service_assignment.controller;
 
+import com.example.order_service_assignment.dto.OrderRequestDto;
 import com.example.order_service_assignment.model.Order;
 import com.example.order_service_assignment.service.OrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +34,15 @@ public class OrderController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // @PostMapping
+    // public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    //     Order saved = orderService.createOrder(order);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+    // }
+
     @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+    public ResponseEntity<Order> createOrder(@Valid @RequestBody OrderRequestDto request) {
+        Order order = new Order(request.getProductId(), request.getQuantity());
         Order saved = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }

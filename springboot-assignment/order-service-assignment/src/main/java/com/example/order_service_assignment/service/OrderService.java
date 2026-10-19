@@ -4,6 +4,7 @@ import com.example.order_service_assignment.model.Order;
 import com.example.order_service_assignment.model.Product;
 import com.example.order_service_assignment.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,7 +17,9 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final RestTemplate restTemplate;
 
-    private static final String PRODUCT_SERVICE_URL = "http://localhost:8081/products/";
+    // private static final String PRODUCT_SERVICE_URL = "http://localhost:8081/products/";
+    @Value("${product.service.url}")
+    private String productServiceUrl;
 
     @Autowired
     public OrderService(OrderRepository orderRepository, RestTemplate restTemplate) {
@@ -33,7 +36,8 @@ public class OrderService {
     }
 
     public Order createOrder(Order order) {
-        Product product = restTemplate.getForObject(PRODUCT_SERVICE_URL + order.getProductId(), Product.class);
+        // Product product = restTemplate.getForObject(PRODUCT_SERVICE_URL + order.getProductId(), Product.class);
+        Product product = restTemplate.getForObject(productServiceUrl + order.getProductId(), Product.class);
         if (product == null) {
             throw new RuntimeException("Product not found with id " + order.getProductId());
         }

@@ -3,11 +3,13 @@ package com.example.order_service_assignment.service;
 import com.example.order_service_assignment.model.Order;
 import com.example.order_service_assignment.model.Product;
 import com.example.order_service_assignment.repository.OrderRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -27,6 +29,11 @@ class OrderServiceTest {
 
     @InjectMocks
     private OrderService orderService;
+
+    @BeforeEach
+    void setUp() {
+        ReflectionTestUtils.setField(orderService, "productServiceUrl", "http://localhost:8081/products/");
+    }
 
     @Test
     void testGetAllOrders() {
