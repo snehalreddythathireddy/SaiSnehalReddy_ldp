@@ -16,8 +16,6 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final RestTemplate restTemplate;
-
-    // private static final String PRODUCT_SERVICE_URL = "http://localhost:8081/products/";
     @Value("${product.service.url}")
     private String productServiceUrl;
 
