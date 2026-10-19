@@ -34,11 +34,6 @@ public class ProductController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // @PostMapping
-    // public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-    //     Product saved = productService.createProduct(product);
-    //     return ResponseEntity.status(HttpStatus.CREATED).body(saved);
-    // }
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@Valid @RequestBody ProductRequestDto request) {
@@ -47,10 +42,6 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(saved);
     }
 
-    // @PutMapping("/{id}")
-    // public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-    //     return ResponseEntity.ok(productService.updateProduct(id, product));
-    // }
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequestDto request) {
