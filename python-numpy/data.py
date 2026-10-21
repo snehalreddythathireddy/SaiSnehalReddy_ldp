@@ -62,43 +62,36 @@ df['Grade'] = ['A', 'B', 'A', 'C', 'A']
 print("After Adding Grade:")
 print(df)
 
-# Modify a column
+
 df['Marks'] = df['Marks'] + 5
 print("\nAfter Adding 5 Marks:")
 print(df)
 
-# Update a specific value
 df.loc[df['Name'] == 'Sneha', 'City'] = 'Bengaluru'
 print("\nAfter Updating Sneha's City:")
 print(df)
 
-# Sort in ascending order
 print("\nSorted by Marks (Ascending):")
 print(df.sort_values(by='Marks'))
 
-# Sort in descending order
 print("\nSorted by Marks (Descending):")
 print(df.sort_values(by='Marks', ascending=False))
 
-# Set Name as index
+
 df.set_index('Name', inplace=True)
 print("\nAfter Setting Name as Index:")
 print(df)
 
-# Access a row using loc
 print("\nPriya's Record:")
 print(df.loc['Priya'])
 
-# Access rows using iloc
 print("\nFirst Two Rows:")
 print(df.iloc[:2])
 
-# Delete a column
 df.drop(columns=['City'], inplace=True)
 print("\nAfter Deleting City Column:")
 print(df)
 
-# Delete a row
 df.drop(index='Rahul', inplace=True)
 print("\nAfter Deleting Rahul's Record:")
 print(df)
