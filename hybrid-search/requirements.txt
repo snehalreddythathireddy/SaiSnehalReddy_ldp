@@ -1,0 +1,10 @@
+torch
+transformers
+sentence-transformers
+langchain
+langchain-community
+langchain-pinecone
+langchain-ollama
+pinecone
+pypdf
+python-dotenv
