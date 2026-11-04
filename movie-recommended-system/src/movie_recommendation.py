@@ -55,9 +55,7 @@ collection.add(
     ids=df["Title"].tolist(),
 
     documents=descriptions,
-
     embeddings=embeddings.tolist(),
-
     metadatas=[
         {
             "genre": row["Genre"],
