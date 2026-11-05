@@ -1,0 +1,36 @@
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Milvus local database
+*.db
+*.db-journal
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# macOS files
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# DeepEval generated files
+.deepeval/
+confident.api.key
