@@ -1,0 +1,3 @@
+deepeval[inspect]
+openai
+python-dotenv
