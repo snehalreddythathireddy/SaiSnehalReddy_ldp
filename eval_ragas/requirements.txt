@@ -1,0 +1,8 @@
+ragas
+openai
+python-dotenv
+beautifulsoup4>=4.12,<5
+ollama>=0.4,<1
+pymilvus[milvus-lite]>=2.4,<3
+pypdf>=5,<7
+requests>=2.32,<3
