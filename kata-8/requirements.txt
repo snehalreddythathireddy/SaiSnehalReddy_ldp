@@ -1,0 +1,10 @@
+pymilvus
+ollama
+requests
+python-dotenv
+tavily-python
+beautifulsoup4
+pypdf
+sentence-transformers
+cachetools
+numpy
