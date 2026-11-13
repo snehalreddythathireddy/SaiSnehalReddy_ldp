@@ -1,0 +1,7 @@
+.venv/
+.env
+__pycache__/
+*.pyc
+milvus.db
+milvus.db-shm
+milvus.db-waldata/chat_history.json
