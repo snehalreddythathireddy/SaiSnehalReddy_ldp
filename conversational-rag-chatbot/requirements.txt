@@ -1,0 +1,6 @@
+deepagents
+langchain[openai]
+langchain-text-splitters
+requests
+python-dotenv
+langchain-ollama
