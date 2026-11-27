@@ -22,15 +22,9 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langgraph.checkpoint.memory import InMemorySaver
 
 
-# 1. LOAD ENVIRONMENT VARIABLES
-
-load_dotenv()
-
-if not os.getenv("OPENAI_API_KEY"):
-    raise ValueError("OPENAI_API_KEY is missing in .env")
 
 
-# 2. LOAD LANGCHAIN DOCUMENTATION
+# 1. LOAD LANGCHAIN DOCUMENTATION
 
 DOCS_BASE = "https://docs.langchain.com"
 
@@ -78,7 +72,7 @@ def load_documents():
     return documents
 
 
-# 3. SPLIT DOCUMENTS INTO CHUNKS
+# 2. SPLIT DOCUMENTS INTO CHUNKS
 
 def create_vector_store():
 
@@ -106,12 +100,12 @@ def create_vector_store():
     return vector_store
 
 
-# 4. CREATE AGENT FILESYSTEM BACKEND
+# 3. CREATE AGENT FILESYSTEM BACKEND
 
 backend = StateBackend()
 
 
-# 5. CREATE RAG SEARCH TOOL
+# 4. CREATE RAG SEARCH TOOL
 
 def create_search_tool(vector_store):
 
@@ -168,7 +162,7 @@ def create_search_tool(vector_store):
     return search_documentation
 
 
-# 6. DEFINE AGENT INSTRUCTIONS
+# 5. DEFINE AGENT INSTRUCTIONS
 
 MAIN_AGENT_PROMPT = """
 You are a helpful conversational LangChain documentation assistant.
