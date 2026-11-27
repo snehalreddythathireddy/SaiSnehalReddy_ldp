@@ -1,0 +1,4 @@
+Name: Snehal
+College: GPCET
+Branch: CSE
+CGPA: 8.2
